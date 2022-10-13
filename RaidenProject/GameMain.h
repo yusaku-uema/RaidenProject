@@ -18,6 +18,6 @@ public:
 	//•`‰æ‚ÉŠÖ‚·‚é‚±‚Æ‚ðŽÀ‘•‚·‚é
 	virtual void Draw() const override;
 
-	bool HitCheck(); //“–‚½‚è”»’è
+	void HitCheck(); //“–‚½‚è”»’è
 
 };
