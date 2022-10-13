@@ -6,7 +6,8 @@
 class GameMain : public AdstractScene 
 {
 private:
-
+	//float player; //ポインタ変数
+	//int *enemy[5]; //ポインタ配列
 public:
 	//デストラクタ
 	virtual ~GameMain() {};
@@ -17,5 +18,6 @@ public:
 	//描画に関することを実装する
 	virtual void Draw() const override;
 
+	bool HitCheck(); //当たり判定
 
 };
