@@ -1,6 +1,4 @@
 #pragma once
-
-#pragma once
 #include"AdstractScene.h"
 
 class GameMain : public AdstractScene 
@@ -9,8 +7,9 @@ private:
 	//float player; //ポインタ変数
 	//int *enemy[5]; //ポインタ配列
 public:
+	GameMain();
 	//デストラクタ
-	virtual ~GameMain() {};
+	~GameMain();
 
 	//描画以下の更新を実施する
 	virtual AdstractScene* Update() override;
@@ -19,5 +18,7 @@ public:
 	virtual void Draw() const override;
 
 	void HitCheck(); //当たり判定
+
+	static void test(); //テスト用
 
 };

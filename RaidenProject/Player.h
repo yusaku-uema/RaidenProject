@@ -10,6 +10,5 @@ public:
 	player();
 	~player();
 	virtual AdstractScene* Update()override;
-	virtual void Draw()const override;
-	virtual 
+	virtual void Draw()const override; 
 };
