@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
