@@ -151,10 +151,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CharaBase.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdstractScene.h" />

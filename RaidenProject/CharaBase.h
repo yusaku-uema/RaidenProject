@@ -1,7 +1,7 @@
 #pragma once
 #include"AdstractScene.h"
 
-class CharaBase :AdstractScene
+class CharaBase : public AdstractScene
 {
 private:
 	int * bullets[10]; //ポインタ配列
@@ -13,5 +13,5 @@ public:
 	virtual AdstractScene* Update() = 0;
 	virtual void  Draw()const = 0;
 	virtual void Hit() = 0;
-	int GetBullets();
+	int GetBullets(); //弾丸
 };
