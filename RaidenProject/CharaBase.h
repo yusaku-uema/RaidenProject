@@ -8,10 +8,10 @@ private:
 	float speed; //íeä€ÉXÉsÅ[Éh
 	int image; //íeä€âÊëú
 public:
-	CharaBase();
-	~CharaBase();
-	virtual AdstractScene* Update() = 0;
-	virtual void  Draw()const = 0;
-	virtual void Hit() = 0;
-	int GetBullets(); //íeä€
+	//CharaBase();
+	//~CharaBase();
+	//virtual AdstractScene* Update() = 0;
+	//virtual void  Draw()const = 0;
+	//virtual void Hit() = 0;
+	//int GetBullets(); //íeä€
 };

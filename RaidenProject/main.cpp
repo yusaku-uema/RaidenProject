@@ -5,11 +5,12 @@
 #include "DxLib.h"
 #include"AdstractScene.h"
 #include"SceneManager.h"
+#include"Title.h"
 
 /***********************************************
- * プログラムの開始
+ * 変数
  ***********************************************/
-int	g_Key; //入力キー
+bool Forcedtermination = false; //強制終了フラグ
 
 /***********************************************
  * プログラムの開始
@@ -28,16 +29,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
     SetDrawScreen(DX_SCREEN_BACK);	// 描画先画面を裏にする
 
-    SceneManager sceneMng();
+    SceneManager sceneMng(new Title());
 
-    while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0) {  //sceneMng.Update() != nullptr
-
-        // 入力キー取得   
-        g_Key = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+    while (ProcessMessage() == 0 && Forcedtermination != true && sceneMng.Update() != nullptr) {
+        // ゲームパットのBACKボタン押されたら強制終了
+        if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_7) { 
+            Forcedtermination = true;
+        }
 
         ClearDrawScreen();		// 画面の初期化
 
+        sceneMng.Draw();
+
         ScreenFlip();			// 裏画面の内容を表画面に反映
+
     }
 
     DxLib_End();	// DXライブラリ使用の終了処理

@@ -8,7 +8,7 @@ private:
 	int life; //Žc‚èŽc‹@
 public:
 	player();
-	virtual AdstractScene* Update()override;
+	/*virtual AdstractScene* Update()override;
 	virtual void Draw()const override; 
-	virtual void Hit()override;
+	virtual void Hit()override;*/
 };

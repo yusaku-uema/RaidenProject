@@ -4,12 +4,10 @@
 class GameMain : public AdstractScene 
 {
 private:
-	//float player; //ポインタ変数
-	//int *enemy[5]; //ポインタ配列
+	float *player; //ポインタ変数
+	int *enemy[5]; //ポインタ配列
 public:
 	GameMain();
-	//デストラクタ
-	~GameMain();
 
 	//描画以下の更新を実施する
 	virtual AdstractScene* Update() override;
@@ -19,6 +17,5 @@ public:
 
 	void HitCheck(); //当たり判定
 
-	static void test(); //テスト用
 
 };

@@ -6,9 +6,9 @@ private:
 	float location; //’†SÀ•W
 	float radius; //”¼Œa
 public:
-	SphereCollider();
+	/*SphereCollider();
 	~SphereCollider();
 	float HitSphere();
 	float GetLocation();
-	float SetLocation();
+	float SetLocation();*/
 };
