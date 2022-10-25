@@ -8,7 +8,11 @@ GameMain::GameMain() {
 
 AdstractScene* GameMain::Update() {
 	
-	return this;
+
+	//ここにゲームの処理
+
+
+	return this; //自分のポインタ　見やすく→return GameMain;
 }
 
 void GameMain::Draw() const {
