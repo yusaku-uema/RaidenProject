@@ -33,11 +33,6 @@ void Title::Draw() const {
         DrawString(150, 455, "---Aボタンでゲームスタート---", GetColor(255, 0, 0));
     }
 
-    if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_A) {  //動作チェック
-        //次のシーンに移行
-        //return new 次のシーン指定;
-        DrawString(100, 555, "次シーンに移行", GetColor(255, 255, 255));
-    }
 }
 
 
