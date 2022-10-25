@@ -12,7 +12,7 @@ AdstractScene* GameMain::Update() {
 }
 
 void GameMain::Draw() const {
-	test->test();
+	test->test(); //テスト、タイトルから関数を呼び出せるか
 }
 
 void GameMain::HitCheck() {

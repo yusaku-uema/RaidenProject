@@ -8,7 +8,7 @@ private:
 	float *player; //ポインタ変数
 	int *enemy[5]; //ポインタ配列
 public:
-	Title* test;
+	Title* test;//タイトルのポインタ
 	GameMain();
 
 	//描画以下の更新を実施する

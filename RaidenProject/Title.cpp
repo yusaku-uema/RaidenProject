@@ -34,7 +34,7 @@ void Title::Draw() const {
     }
 
 }
-void Title::test() {
+void Title::test() {  //テスト呼び出し
     DrawString(150, 455, "呼びだし成功,おめでとう", GetColor(255, 0, 0));
 }
 
