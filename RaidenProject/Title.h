@@ -11,6 +11,7 @@ public:
  	Title ();
 	virtual AdstractScene* Update() override;
 	void Draw() const override;
+	void test(); //テスト他のクラスとの関数呼びだし
 };
 
 

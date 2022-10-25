@@ -1,5 +1,6 @@
 #pragma once
 #include"AdstractScene.h"
+#include"Title.h" //テスト
 
 class GameMain : public AdstractScene 
 {
@@ -7,6 +8,7 @@ private:
 	float *player; //ポインタ変数
 	int *enemy[5]; //ポインタ配列
 public:
+	Title* test;
 	GameMain();
 
 	//描画以下の更新を実施する

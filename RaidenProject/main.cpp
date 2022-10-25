@@ -29,12 +29,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
     SetDrawScreen(DX_SCREEN_BACK);	// 描画先画面を裏にする
 
-    SceneManager sceneMng(new Title());
+    SceneManager sceneMng(new Title()); 
 
     while (ProcessMessage() == 0 && Forcedtermination != true && sceneMng.Update() != nullptr) {
         // ゲームパットのBACKボタン押されたら強制終了
         if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_7) { 
-            Forcedtermination = true;
+            Forcedtermination = true; //フラグをTrueに
         }
 
         ClearDrawScreen();		// 画面の初期化

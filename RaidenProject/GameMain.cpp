@@ -8,12 +8,11 @@ GameMain::GameMain() {
 
 AdstractScene* GameMain::Update() {
 	
-	
 	return this;
 }
 
 void GameMain::Draw() const {
-
+	test->test();
 }
 
 void GameMain::HitCheck() {

@@ -34,6 +34,9 @@ void Title::Draw() const {
     }
 
 }
+void Title::test() {
+    DrawString(150, 455, "ŒÄ‚Ñ‚¾‚µ¬Œ÷,‚¨‚ß‚Å‚Æ‚¤", GetColor(255, 0, 0));
+}
 
 
 
