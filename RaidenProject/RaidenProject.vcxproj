@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CharaBase.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
@@ -162,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="AdstractScene.h" />
     <ClInclude Include="CharaBase.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneManager.h" />

@@ -4,14 +4,16 @@
 class player : public CharaBase
 {
 private:
-	int score; //スコア
-	int life; //残り残機
-	int player_images; //プレイヤーイメージ画像
+	int Score; //スコア
+	int Life; //残り残機
+	int Player_images[4]; //プレイヤーイメージ画像
+	float Player_X;
+	float Player_Y;
 public:
 	player();
 	virtual AdstractScene* Update()override;
 	virtual void Draw()const override; 
-	//virtual void Hit()override;
+	virtual void Hit() {};
 	void LifeCheck();
 	int GetScore();
 };

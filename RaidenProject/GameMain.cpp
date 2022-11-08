@@ -2,12 +2,11 @@
 
 
 GameMain::GameMain() {
-	player = 0;
 
 }
 
 AdstractScene* GameMain::Update() {
-	
+	player->Update();
 
 	//ここにゲームの処理
 
@@ -15,10 +14,9 @@ AdstractScene* GameMain::Update() {
 	return this; //自分のポインタ　見やすく→return GameMain;
 }
 
-void GameMain::Draw() const {
-	test->test(); //テスト、タイトルから関数を呼び出せるか
+void GameMain::Draw()const {
+	player->Draw();
 }
 
 void GameMain::HitCheck() {
-
 }

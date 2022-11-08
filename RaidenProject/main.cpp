@@ -18,7 +18,7 @@ bool Forcedtermination = false; //強制終了フラグ
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     LPSTR lpCmdLine, int nCmdShow) {
 
-    // タイトルを test に変更
+    // タイトルを 雷電プロジェクトに変更
     SetMainWindowText("雷電プロジェクト");
 
     ChangeWindowMode(TRUE);		// ウィンドウモードで起動
@@ -29,9 +29,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
     SetDrawScreen(DX_SCREEN_BACK);	// 描画先画面を裏にする
 
-    SceneManager sceneMng(new Title()); 
+    SceneManager sceneMng(new Title());  //タイトルからスタート
 
     while (ProcessMessage() == 0 && Forcedtermination != true && sceneMng.Update() != nullptr) {
+        
         // ゲームパットのBACKボタン押されたら強制終了
         if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_7) { 
             Forcedtermination = true; //フラグをTrueに

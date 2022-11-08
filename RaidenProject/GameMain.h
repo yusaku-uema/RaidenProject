@@ -1,13 +1,12 @@
 #pragma once
 #include"AdstractScene.h"
-#include"Title.h" //テスト
+#include"Player.h"
 
 class GameMain : public AdstractScene 
 {
 private:
-	float *player; //ポインタ変数
-	int *enemy[5]; //ポインタ配列
-	Title* test;//タイトルのポインタテスト
+	player* player;
+
 public:
 	
 	GameMain();
