@@ -1,12 +1,12 @@
 #pragma once
 #include"AdstractScene.h"
 #include"Player.h"
+#include"Title.h"
 
 class GameMain : public AdstractScene 
 {
 private:
 	player* player;
-
 public:
 	
 	GameMain();

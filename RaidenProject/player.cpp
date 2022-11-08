@@ -7,6 +7,7 @@ player::player() {
 	Life = 0;
 	Player_X = 0;
 	Player_Y = 0;
+	imagesnum = 0;
 	LoadDivGraph("images/Player/Zerofighter plane.png", 4, 32, 1, 32, 32, Player_images);
 
 }
@@ -20,6 +21,7 @@ AdstractScene* player::Update() {
 }
 
 void player::Draw() const {
-	DrawGraph(Player_X ,Player_Y, Player_images[0], TRUE);
+
+	DrawGraph(Player_X ,Player_Y, Player_images[imagesnum], TRUE);
 }
 

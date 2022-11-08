@@ -17,6 +17,7 @@ void CharaBase::Hit() {
 
 }
 
-//int CharaBase::GetBullets() {
-//}
+float CharaBase::GetBullets() {
+	return 0; //‰¼
+}
 

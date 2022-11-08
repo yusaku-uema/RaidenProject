@@ -12,5 +12,5 @@ public:
 	virtual AdstractScene* Update() = 0;
 	virtual void  Draw()const = 0;
 	virtual void Hit() = 0;
-	//int GetBullets(); //íeä€
+	float GetBullets(); //íeä€
 };
