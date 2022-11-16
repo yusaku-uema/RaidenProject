@@ -29,21 +29,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
     SetDrawScreen(DX_SCREEN_BACK);	// 描画先画面を裏にする
 
-    SceneManager sceneMng(new Title());  //タイトルからスタート
+    SceneManager* sceneManager = new SceneManager(new Title()); //最初に呼び出すシーン
 
-    while (ProcessMessage() == 0 && Forcedtermination != true && sceneMng.Update() != nullptr) {
+    while (ProcessMessage() == 0 && Forcedtermination != true) {
         
         // ゲームパットのBACKボタン押されたら強制終了
         if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_7) { 
             Forcedtermination = true; //フラグをTrueに
         }
 
+        sceneManager->Update();
+
         ClearDrawScreen();		// 画面の初期化
-
-        sceneMng.Draw();
-
+        sceneManager->Draw();
         ScreenFlip();			// 裏画面の内容を表画面に反映
 
+        sceneManager->ChangeScene();
     }
 
     DxLib_End();	// DXライブラリ使用の終了処理

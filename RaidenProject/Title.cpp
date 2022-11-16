@@ -8,20 +8,14 @@ Title::Title()
 	Title_bgm = 0; //仮
 	Title_Drawingtime = 0;
 }
-
-AdstractScene* Title::Update() {
+void  Title::Update() {
+    
     //文字の表示（点滅）
     Title_Drawingtime++; 
      if (Title_Drawingtime > 60)
     {
         Title_Drawingtime = 0;
     }
-
-    if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_A) {
-        //次のシーンに移行
-        return new GameMain();
-    }
-    return this;
 }
 
 void Title::Draw() const {
@@ -33,10 +27,15 @@ void Title::Draw() const {
     }
 
 }
-void Title::test() {  //テスト呼び出し
-    DrawString(150, 455, "呼びだし成功,おめでとう", GetColor(255, 0, 0));
-}
 
+AdstractScene* Title::ChangeScene()
+{
+    if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_A) {
+        //次のシーンに移行
+        return new GameMain();
+    }
+    return this; //自分自身のポインタを返す。　
+}
 
 
 

@@ -1,21 +1,19 @@
 #pragma once
 #include"AdstractScene.h"
-#include"Player.h"
-#include"Title.h"
 
 class GameMain : public AdstractScene 
 {
 private:
-	player* player;
 public:
 	
 	GameMain();
 
 	//•`‰æˆÈ‰º‚ÌXV‚ğÀ{‚·‚é
-	virtual AdstractScene* Update() override;
+	virtual void Update() override;
 
 	//•`‰æ‚ÉŠÖ‚·‚é‚±‚Æ‚ğÀ‘•‚·‚é
 	virtual void Draw() const override;
+	virtual AdstractScene* ChangeScene() override;
 
 	void HitCheck(); //“–‚½‚è”»’è
 

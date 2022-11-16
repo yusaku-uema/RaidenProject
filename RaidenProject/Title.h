@@ -9,9 +9,9 @@ private:
 	int Title_Drawingtime; //文字描画時間
 public:
  	Title ();
-	virtual AdstractScene* Update() override;
-	void Draw() const override;
-	void test(); //テスト他のクラスとの関数呼びだし
+	virtual void Update() override;
+	virtual void Draw() const override;
+	virtual AdstractScene* ChangeScene() override;
 };
 
 

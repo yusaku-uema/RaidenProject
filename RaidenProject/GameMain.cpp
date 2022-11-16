@@ -1,21 +1,24 @@
 #include"GameMain.h"
 
-
 GameMain::GameMain() {
 
 }
 
-AdstractScene* GameMain::Update() {
-	player->Update();
+void  GameMain::Update() {
+	
+	/*player->Update(); */
 
 	//ここにゲームの処理
 
-
-	return this; //自分のポインタ　見やすく→return GameMain;
 }
 
 void GameMain::Draw()const {
-	player->Draw();
+	/*player->Draw();*/
+}
+
+AdstractScene* GameMain::ChangeScene()
+{
+	return this;
 }
 
 void GameMain::HitCheck() {

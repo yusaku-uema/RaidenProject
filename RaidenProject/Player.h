@@ -1,7 +1,7 @@
 #pragma once
-#include"CharaBase.h"
+#include"AdstractScene.h"
 
-class player : public CharaBase
+class Player : public AdstractScene
 {
 private:
 	int Score; //ÉXÉRÉA
@@ -11,9 +11,10 @@ private:
 	float Player_X;
 	float Player_Y;
 public:
-	player();
-	virtual AdstractScene* Update()override;
+	Player();
+	virtual void Update()override;
 	virtual void Draw()const override; 
+	virtual AdstractScene* ChangeScene() override;
 	virtual void Hit() {};
 	void LifeCheck();
 	int GetScore();

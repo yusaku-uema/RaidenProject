@@ -1,8 +1,8 @@
 #include"Player.h"
 #include"DxLib.h"
 
-player::player() {
-
+Player::Player() 
+{
 	Score = 0;
 	Life = 0;
 	Player_X = 0;
@@ -12,16 +12,23 @@ player::player() {
 
 }
 
-AdstractScene* player::Update() {
+void Player::Update() 
+{
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT) --Player_X; //ç∂
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_RIGHT) ++Player_X; //âE
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_UP) --Player_Y; //è„
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_DOWN) ++Player_Y; //â∫
-	return this;
 }
 
-void player::Draw() const {
+void Player::Draw() const
+{
 
 	DrawGraph(Player_X ,Player_Y, Player_images[imagesnum], TRUE);
+}
+
+AdstractScene* Player::ChangeScene()
+{
+	return this;
+
 }
 
