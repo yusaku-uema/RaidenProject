@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CharaBase.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdstractScene.h" />
+    <ClInclude Include="CharaBase.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneManager.h" />

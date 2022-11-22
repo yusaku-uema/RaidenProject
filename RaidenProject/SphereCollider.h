@@ -8,7 +8,7 @@ private:
 public:
 	/*SphereCollider();
 	~SphereCollider();
-	float HitSphere();
-	float GetLocation();
-	float SetLocation();*/
+	void  HitSphere();
+	void  GetLocation();
+	void  SetLocation();*/
 };

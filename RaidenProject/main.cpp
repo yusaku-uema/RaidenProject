@@ -38,13 +38,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
             Forcedtermination = true; //フラグをTrueに
         }
 
-        sceneManager->Update();
+        sceneManager->Update(); //描画以外
 
         ClearDrawScreen();		// 画面の初期化
-        sceneManager->Draw();
+
+        sceneManager->Draw(); //描画のみ
+
         ScreenFlip();			// 裏画面の内容を表画面に反映
 
-        sceneManager->ChangeScene();
+        sceneManager->ChangeScene(); //シーン切り替え
     }
 
     DxLib_End();	// DXライブラリ使用の終了処理

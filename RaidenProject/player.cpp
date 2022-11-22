@@ -26,9 +26,8 @@ void Player::Draw() const
 	DrawGraph(Player_X ,Player_Y, Player_images[imagesnum], TRUE);
 }
 
-AdstractScene* Player::ChangeScene()
+void Player::Hit()
 {
-	return this;
-
+	
 }
 

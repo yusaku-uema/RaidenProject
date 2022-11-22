@@ -6,14 +6,14 @@ GameMain::GameMain() {
 
 void  GameMain::Update() {
 	
-	/*player->Update(); */
+	player->Update(); 
 
 	//‚±‚±‚ÉƒQ[ƒ€‚Ìˆ—
 
 }
 
 void GameMain::Draw()const {
-	/*player->Draw();*/
+	player->Draw();
 }
 
 AdstractScene* GameMain::ChangeScene()
