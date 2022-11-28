@@ -5,9 +5,10 @@
 class GameMain : public AdstractScene 
 {
 private:
-	Player *player; //インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
+//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
+	Player *player; 
 public:
-	
+	//コンストラクタ
 	GameMain();
 
 	//描画以下の更新を実施する
@@ -15,9 +16,12 @@ public:
 
 	//描画に関することを実装する
 	void Draw() const override;
+
+	//シーン切り替え
 	AdstractScene* ChangeScene() override;
 
-	void HitCheck(); //当たり判定
+	//当たり判定
+	void HitCheck(); 
 
 
 };
