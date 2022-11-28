@@ -4,9 +4,10 @@
 class Title :public AdstractScene
 {
 private:
-	int Title_images; //タイトル画像
-	int Title_bgm; //タイトルBGM
+	int Title_Images; //タイトル画像
+	int Title_BGM; //タイトルBGM
 	int Title_Drawingtime; //文字描画時間
+
 public:
  	Title ();
 	virtual void Update() override;

@@ -4,8 +4,8 @@
 
 Title::Title()
 {
-	Title_images = LoadGraph("images/Title/Title.png"); //‰æ‘œ“Ç‚İ
-	Title_bgm = 0; //‰¼
+	Title_Images = LoadGraph("images/Title/Title.png"); //‰æ‘œ“Ç‚İ
+	Title_BGM = 0; //‰¼ABGM‚Ü‚¾–¢’è
 	Title_Drawingtime = 0;
 }
 void  Title::Update() {
@@ -19,7 +19,7 @@ void  Title::Update() {
 }
 
 void Title::Draw() const {
-    DrawGraph(0, 0, Title_images, FALSE);
+    DrawGraph(0, 0, Title_Images, FALSE);
     SetFontSize(25);
     if (Title_Drawingtime < 30)
     {
