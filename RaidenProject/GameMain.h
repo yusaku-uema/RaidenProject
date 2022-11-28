@@ -5,7 +5,7 @@
 class GameMain : public AdstractScene 
 {
 private:
-	Player *player;
+	Player *player; //インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
 public:
 	
 	GameMain();
