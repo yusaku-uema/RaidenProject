@@ -14,6 +14,11 @@ Player::Player()
 
 void Player::Update() 
 {
+
+	g_OldKey = g_NowKey;
+	g_NowKey = GetJoypadInputState(DX_INPUT_PAD1);
+	g_KeyFlg = g_NowKey & ~g_OldKey;
+
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT) --Player_X; //ç∂
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_RIGHT) ++Player_X; //âE
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_UP) --Player_Y; //è„
