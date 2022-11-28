@@ -1,13 +1,12 @@
 #include"GameMain.h"
 
 GameMain::GameMain() {
-
+	
 }
 
 void  GameMain::Update() {
 	
 	player->Update(); 
-
 	//‚±‚±‚ÉƒQ[ƒ€‚Ìˆ—
 
 }

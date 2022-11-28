@@ -20,10 +20,10 @@ void  Title::Update() {
 
 void Title::Draw() const {
     DrawGraph(0, 0, Title_images, FALSE);
-    SetFontSize(64);
+    SetFontSize(25);
     if (Title_Drawingtime < 30)
     {
-        DrawString(150, 455, "---Aボタンでゲームスタート---", GetColor(255, 0, 0));
+        DrawString(150, 240, "---Aボタンでゲームスタート---", GetColor(255, 0, 0));
     }
 
 }
