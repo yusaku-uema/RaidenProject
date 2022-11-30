@@ -5,7 +5,7 @@ GameMain::GameMain()
 
 }
 
-void  GameMain::Update()
+void GameMain::Update()
 {
 	//‚±‚±‚ÉƒQ[ƒ€‚Ìˆ—‚ğ‹Lq
 

@@ -13,7 +13,7 @@ void  Title::Update()
 	//文字の表示（点滅）
 	Title_Drawingtime++;  //描画時間を +１していく
 
-	if (Title_Drawingtime > 60)
+	if (Title_Drawingtime > 60) 
 	{
 		Title_Drawingtime = 0; //リセット
 	}
@@ -33,7 +33,7 @@ void Title::Draw() const
 	DrawString(100, 120, "雷電プロジェクト", GetColor(255, 0, 0)); //文字表示
 
 	SetFontSize(30);//フォントサイズ変更
-	if (Title_Drawingtime < 30) //３０より小さい間文字描画
+	if (Title_Drawingtime < 30) //３０より小さい間、文字描画する。
 	{
 		DrawString(120, 260, "---Aボタンでゲームスタート---", GetColor(255, 255, 255)); //文字の描画
 	}
