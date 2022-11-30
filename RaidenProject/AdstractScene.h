@@ -2,7 +2,7 @@
 
 class AdstractScene {
 public:
-	
+
 	//描画以外の更新を実装する. プレイヤーの動き
 	virtual void Update() = 0;
 

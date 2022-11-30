@@ -9,7 +9,7 @@ private:
 	int Title_Drawingtime; //文字描画時間
 
 public:
- 	Title (); //コンスタラクタ
+	Title(); //コンスタラクタ
 	virtual void Update() override; //描画以外
 	virtual void Draw() const override; //描画のみ
 	virtual AdstractScene* ChangeScene() override; //シーン切り替え

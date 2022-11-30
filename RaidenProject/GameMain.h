@@ -2,12 +2,12 @@
 #include"AdstractScene.h"
 #include"Player.h"
 
-class GameMain : public AdstractScene 
+class GameMain : public AdstractScene
 {
 
 private:
-//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
-	Player *player; 
+	//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
+	Player* player;
 
 public:
 
@@ -24,6 +24,6 @@ public:
 	AdstractScene* ChangeScene() override;
 
 	//当たり判定
-	void HitCheck(); 
+	void HitCheck();
 
 };

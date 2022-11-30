@@ -1,7 +1,9 @@
 #include"Player.h"
 #include"DxLib.h"
 
-Player::Player() 
+
+
+Player::Player()
 {
 	Score = 0;
 	Life = 0;
@@ -14,7 +16,7 @@ Player::Player()
 	g_OldKey = 0;
 }
 
-void Player::Update() 
+void Player::Update()
 {
 
 	g_OldKey = g_NowKey;
@@ -30,11 +32,11 @@ void Player::Update()
 void Player::Draw() const
 {
 
-	DrawGraph(Player_X ,Player_Y, Player_images[imagesnum], TRUE);
+	DrawGraph(Player_X, Player_Y, Player_images[imagesnum], TRUE);
 }
 
 void Player::Hit()
 {
-	
+
 }
 

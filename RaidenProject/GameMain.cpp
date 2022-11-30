@@ -1,16 +1,16 @@
 #include"GameMain.h"
 
-GameMain::GameMain() 
+GameMain::GameMain()
 {
-	
+
 }
 
-void  GameMain::Update() 
+void  GameMain::Update()
 {
 	//‚±‚±‚ÉƒQ[ƒ€‚Ìˆ—‚ð‹Lq
 
-	player->Update(); 
-	
+	player->Update();
+
 
 }
 
@@ -27,7 +27,7 @@ AdstractScene* GameMain::ChangeScene()
 	return this;
 }
 
-void GameMain::HitCheck() 
+void GameMain::HitCheck()
 {
-	
+
 }
