@@ -11,6 +11,8 @@ private:
 	int g_NowKey; //現在のKey
 	int AX, AY; //コントローラのステック入力
 	bool Shooting_Flag; //射撃ボタンを押しているかいないのか
+	bool Right; //右を向いているか
+	bool Left;//左を向いているか
 
 	//自機
 	int Score; //スコア

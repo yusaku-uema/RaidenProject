@@ -7,17 +7,15 @@ GameMain::GameMain()
 
 void GameMain::Update()
 {
-	//‚±‚±‚ÉƒQ[ƒ€‚Ìˆ—‚ð‹Lq
+	//‚±‚±‚ÉƒQ[ƒ€‚Ìˆ—
 
 	player->Update();
-
 
 }
 
 void GameMain::Draw()const
 {
 	//•`‰æ‚Ì‚Ý
-
 	player->Draw();
 }
 

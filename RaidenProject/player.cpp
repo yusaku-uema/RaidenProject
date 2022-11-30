@@ -17,6 +17,8 @@ Player::Player()
 	g_OldKey = 0;
 	Shooting_Flag = FALSE;
 	Player_Speed = NORMAL;
+	Right = FALSE;
+	Left = FALSE;
 }
 
 void Player::Update()
@@ -35,6 +37,10 @@ void Player::Update()
 
 void Player::Draw() const
 {
+	if (Left == TRUE) 
+	{
+		//DrawRotaGraph(Player_X,Player_Y) 途中
+	}
 	DrawGraph(Player_X, Player_Y, Player_images[Player_Type], TRUE); //プレイヤー画像描画
 }
 
@@ -55,11 +61,15 @@ void  Player::Operation() //プレイヤー操作
 	if (AX > 0) //ステックが右に倒れていたら
 	{
 		Player_X = Player_X + Player_Speed;
+		Right = TRUE; 
+		Left = FALSE;
 	}
 
 	if (AX < 0) //ステックが左に倒れていたら
 	{
 		Player_X = Player_X - Player_Speed;
+		Left = TRUE;
+		Right = FALSE;
 	}
 
 	if (AY > 0) //ステックが下に倒れていたら

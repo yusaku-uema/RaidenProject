@@ -4,7 +4,6 @@
 
 class GameMain : public AdstractScene
 {
-
 private:
 	//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
 	Player* player;
