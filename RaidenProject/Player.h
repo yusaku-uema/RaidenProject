@@ -9,12 +9,14 @@ private:
 	int g_KeyFlg; 
 	int g_OldKey; //古いkey
 	int g_NowKey; //現在のKey
+	int AX, AY; //コントローラのステック入力
 
 	//自機
 	int Score; //スコア
 	int Life; //残り残機
 	int Player_images[4]; //プレイヤーイメージ画像
-	int imagesnum; //プレイヤー画像番号
+	int Player_Type; //プレイヤー画像番号
+	int Image_time; //プレイヤー画像切り替え
 	float Player_X; //プレイヤーX座標
 	float Player_Y; //プレイヤーY座標
 
@@ -26,4 +28,6 @@ public:
 	virtual void Hit()override;
 	void LifeCheck();
 	int GetScore();
+	int Operation(int AX,int AY); //プレイヤー操作
+	int ImageSwitching(int AX, int AY); //画像切り替え
 };
