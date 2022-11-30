@@ -14,6 +14,7 @@ Player::Player()
 	g_KeyFlg = 0;
 	g_NowKey = 0;
 	g_OldKey = 0;
+	Shooting_Flag = FALSE;
 }
 
 void Player::Update()
@@ -36,20 +37,7 @@ void Player::Draw() const
 	DrawGraph(Player_X, Player_Y, Player_images[Player_Type], TRUE);
 }
 
-int Player::ImageSwitching(int AX,int AY) //プレイヤー画像切り替え
-{
-	if (AX > 0 || AX < 0 || AY > 0 || AY < 0) //ステック入力されていたら、プレイヤーの画像切り替え
-	{
-		if (++Image_time >= 5)
-		{
-			Player_Type++; //プレイヤー画像切り替え
-			if (Player_Type > 3)Player_Type = 0; //プレイヤー画像0からスタート
-			Image_time = 0; //タイムリセット
-		}
-	}
-}
-
-int Player::Operation(int AX, int AY)
+int Player::Operation(int AX, int AY) //プレイヤー操作
 {
 	if (AX > 0) //ステック入力が右に倒れていたら
 	{
@@ -62,6 +50,25 @@ int Player::Operation(int AX, int AY)
 	}
 
 }
+
+int Player::ImageSwitching(int AX,int AY) //プレイヤー画像切り替え
+{
+	if (AX > 0 || AX < 0 || AY > 0 || AY < 0) //ステック入力されていたら、プレイヤーの画像切り替え
+	{
+		if (++Image_time >= 5)
+		{
+			if (Shooting_Flag == FALSE) //射撃ボタンを押しているか
+			{
+				//0と1は移動  2と4は、射撃画像
+				Player_Type++; //プレイヤー画像切り替え
+				if (Player_Type > 2)Player_Type = 0; //プレイヤー画像0からスタート
+				Image_time = 0; //タイムリセット
+			}
+		}
+	}
+}
+
+
 
 void Player::Hit()
 {

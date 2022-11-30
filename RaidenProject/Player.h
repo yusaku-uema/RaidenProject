@@ -10,6 +10,7 @@ private:
 	int g_OldKey; //古いkey
 	int g_NowKey; //現在のKey
 	int AX, AY; //コントローラのステック入力
+	bool Shooting_Flag; //射撃ボタンを押しているかいないのか
 
 	//自機
 	int Score; //スコア
