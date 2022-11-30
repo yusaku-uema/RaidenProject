@@ -18,6 +18,7 @@ private:
 	int Player_images[4]; //プレイヤーイメージ画像
 	int Player_Type; //プレイヤー画像番号
 	int Image_time; //プレイヤー画像切り替え
+	float Player_Speed; //速度
 	float Player_X; //プレイヤーX座標
 	float Player_Y; //プレイヤーY座標
 
@@ -29,6 +30,6 @@ public:
 	virtual void Hit()override;
 	void LifeCheck();
 	int GetScore();
-	int Operation(int AX,int AY); //プレイヤー操作
-	int ImageSwitching(int AX, int AY); //画像切り替え
+	void Operation(); //プレイヤー操作
+	void ImageSwitching(); //画像切り替え
 };

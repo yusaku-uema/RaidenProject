@@ -1,7 +1,8 @@
 #include"Player.h"
 #include"DxLib.h"
 
-
+#define NORMAL 1.5;
+#define ATTACK 0.5;
 
 Player::Player()
 {
@@ -15,6 +16,7 @@ Player::Player()
 	g_NowKey = 0;
 	g_OldKey = 0;
 	Shooting_Flag = FALSE;
+	Player_Speed = NORMAL;
 }
 
 void Player::Update()
@@ -26,32 +28,52 @@ void Player::Update()
 
 	GetJoypadAnalogInput(&AX, &AY, DX_INPUT_PAD1); //ステック入力取得
 
-	Operation(AX, AY); //プレイヤー操作
-	ImageSwitching(AX, AY); //プレイヤー画像切り替え
+	Operation(); //プレイヤー操作
+	ImageSwitching(); //プレイヤー画像切り替え
 
 }
 
 void Player::Draw() const
 {
-
-	DrawGraph(Player_X, Player_Y, Player_images[Player_Type], TRUE);
+	DrawGraph(Player_X, Player_Y, Player_images[Player_Type], TRUE); //プレイヤー画像描画
 }
 
-int Player::Operation(int AX, int AY) //プレイヤー操作
+void  Player::Operation() //プレイヤー操作
 {
-	if (AX > 0) //ステック入力が右に倒れていたら
+
+	if (g_NowKey == g_OldKey && g_NowKey && PAD_INPUT_6 && g_OldKey && PAD_INPUT_6) //RBボタンを押し続けているか。
 	{
-		Player_X++;
+		Shooting_Flag = TRUE; //射撃開始
+		Player_Speed = ATTACK; //移動速度低下
+	}
+	else
+	{
+		Shooting_Flag = FALSE; //通常状態
+		Player_Speed = FALSE; //巡航速度に戻す
 	}
 
-	if (AX < 0) //ステック入力が左に倒れていたら
+	if (AX > 0) //ステックが右に倒れていたら
 	{
-		Player_X--;
+		Player_X = Player_X + Player_Speed;
 	}
 
+	if (AX < 0) //ステックが左に倒れていたら
+	{
+		Player_X = Player_X - Player_Speed;
+	}
+
+	if (AY > 0) //ステックが下に倒れていたら
+	{
+		Player_Y = Player_Y + Player_Speed;
+	}
+
+	if (AY < 0) //ステックが上に倒れていたら
+	{
+		Player_Y = Player_Y - Player_Speed;
+	}
 }
 
-int Player::ImageSwitching(int AX,int AY) //プレイヤー画像切り替え
+void  Player::ImageSwitching() //プレイヤー画像切り替え
 {
 	if (AX > 0 || AX < 0 || AY > 0 || AY < 0) //ステック入力されていたら、プレイヤーの画像切り替え
 	{
@@ -59,16 +81,29 @@ int Player::ImageSwitching(int AX,int AY) //プレイヤー画像切り替え
 		{
 			if (Shooting_Flag == FALSE) //射撃ボタンを押しているか
 			{
-				//0と1は移動  2と4は、射撃画像
+				//0と1は移動  2と3は、射撃画像
 				Player_Type++; //プレイヤー画像切り替え
 				if (Player_Type > 2)Player_Type = 0; //プレイヤー画像0からスタート
 				Image_time = 0; //タイムリセット
 			}
+			else
+			{
+				//2と3は、射撃画像
+				if (Player_Type == 3) //射撃画像なら
+				{
+					Player_Type = 2; //プレイヤー画像2する
+					Image_time = 0; //タイムリセット
+				}
+				else
+				{
+					Player_Type = 3; //プレイヤー画像射撃に切り替え
+					Image_time = 0; //タイムリセット
+				}
+
+			}
 		}
 	}
 }
-
-
 
 void Player::Hit()
 {
