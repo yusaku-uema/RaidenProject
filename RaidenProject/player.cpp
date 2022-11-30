@@ -20,15 +20,10 @@ void Player::Update()
 {
 
 	g_OldKey = g_NowKey;
-	g_NowKey = GetJoypadInputState(DX_INPUT_PAD1);
+	g_NowKey = GetJoypadInputState(DX_INPUT_PAD1); //パット入力取得
 	g_KeyFlg = g_NowKey & ~g_OldKey;
 
-	GetJoypadAnalogInput(&AX, &AY, DX_INPUT_PAD1);
-
-	//if (g_KeyFlg & PAD_INPUT_LEFT) --Player_X; //左
-	//if (g_KeyFlg & PAD_INPUT_RIGHT) ++Player_X; //右
-	//if (g_KeyFlg & PAD_INPUT_UP) --Player_Y; //上
-	//if (g_KeyFlg & PAD_INPUT_DOWN) ++Player_Y; //下
+	GetJoypadAnalogInput(&AX, &AY, DX_INPUT_PAD1); //ステック入力取得
 
 	Operation(AX, AY); //プレイヤー操作
 	ImageSwitching(AX, AY); //プレイヤー画像切り替え
@@ -73,3 +68,19 @@ void Player::Hit()
 
 }
 
+
+
+//必要なのか検討中
+//g_OldKey = g_NowKey;
+//g_NowKey = GetJoypadInputState(DX_INPUT_PAD1);
+//g_KeyFlg = g_NowKey & ~g_OldKey;
+//
+//GetJoypadAnalogInput(&AX, &AY, DX_INPUT_PAD1);
+//
+////if (g_KeyFlg & PAD_INPUT_LEFT) --Player_X; //左
+////if (g_KeyFlg & PAD_INPUT_RIGHT) ++Player_X; //右
+////if (g_KeyFlg & PAD_INPUT_UP) --Player_Y; //上
+////if (g_KeyFlg & PAD_INPUT_DOWN) ++Player_Y; //下
+//
+//Operation(AX, AY); //プレイヤー操作
+//ImageSwitching(AX, AY); //プレイヤー画像切り替え
