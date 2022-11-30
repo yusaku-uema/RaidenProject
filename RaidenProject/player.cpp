@@ -6,6 +6,9 @@
 
 Player::Player()
 {
+	AX = 0;
+	AY = 0;
+	Image_time = 0;
 	Score = 0;
 	Life = 0;
 	Player_X = 0;
