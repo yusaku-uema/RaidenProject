@@ -20,9 +20,9 @@ private:
 	int Player_images[4]; //プレイヤーイメージ画像
 	int Player_Type; //プレイヤー画像番号
 	int Image_time; //プレイヤー画像切り替え
-	float Player_Speed; //速度
-	float Player_X; //プレイヤーX座標
-	float Player_Y; //プレイヤーY座標
+	int Player_Speed; //速度
+	int Player_X; //プレイヤーX座標
+	int Player_Y; //プレイヤーY座標
 
 
 public:

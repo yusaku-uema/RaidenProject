@@ -3,8 +3,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#define NORMAL 1.5;
-#define ATTACK 0.5;
+#define NORMAL 2;
+#define ATTACK 1;
 
 Player::Player()
 {
@@ -13,8 +13,8 @@ Player::Player()
 	Image_time = 0;
 	Score = 0;
 	Life = 0;
-	Player_X = 0;
-	Player_Y = 0;
+	Player_X = 310;
+	Player_Y = 240;
 	Player_Type = 0;
 	LoadDivGraph("images/Player/Zerofighter plane.png", 4, 32, 1, 32, 32, Player_images);
 	g_KeyFlg = 0;
@@ -45,7 +45,6 @@ void Player::Draw() const
 	if (Left == TRUE) //左
 	{
 		DrawRotaGraph(Player_X, Player_Y, 1.5f, M_PI / 2, Player_images[Player_Type], TRUE);
-		//DrawRotaGraph( 320 , 240 , 1.5f , PI / 2 , GHandle , TRUE ) ;
 	}
 	else if (Right == TRUE)
 	{
@@ -56,6 +55,10 @@ void Player::Draw() const
 	{
 		DrawRotaGraph(Player_X, Player_Y, 1.5f, 0, Player_images[Player_Type], TRUE);
 	}
+
+	DrawFormatString(320, 240, 0xffffff, "プレイヤーX%d", Player_X);
+	DrawFormatString(320, 280, 0xffffff, "プレイヤーY%d", Player_Y);
+
 }
 
 void  Player::Operation() //プレイヤー操作
@@ -71,39 +74,62 @@ void  Player::Operation() //プレイヤー操作
 		Shooting_Flag = FALSE; //通常状態
 		Player_Speed = NORMAL; //巡航速度に戻す
 	}
+	if (Player_X < 640 - 32 && Player_Y < 480 - 32 && Player_X > 32 && Player_Y > 32)
+	{
+		if (AX > 0) //ステックが右に倒れていたら
+		{
+			Player_X = Player_X + Player_Speed;
+			Right = TRUE;
+			Left = FALSE;
+		}
 
-	if (AX > 0) //ステックが右に倒れていたら
-	{
-		Player_X = Player_X + Player_Speed;
-		Right = TRUE;
-		Left = FALSE;
+		else if (AX < 0) //ステックが左に倒れていたら
+		{
+			Player_X = Player_X - Player_Speed;
+			Left = TRUE;
+			Right = FALSE;
+		}
+
+		else if (AY > 0) //ステックが下に倒れていたら
+		{
+			Player_Y = Player_Y + Player_Speed;
+			Right = FALSE;
+			Left = FALSE;
+		}
+
+		else if (AY < 0) //ステックが上に倒れていたら
+		{
+			Player_Y = Player_Y - Player_Speed;
+			Right = FALSE;
+			Left = FALSE;
+		}
+		else //何も操作していない。
+		{
+			Right = FALSE;
+			Left = FALSE;
+		}
 	}
 
-	else if (AX < 0) //ステックが左に倒れていたら
+	if (Player_X <= 32) //画面外に行ったら座標を戻す
 	{
-		Player_X = Player_X - Player_Speed;
-		Left = TRUE;
-		Right = FALSE;
+		Player_X = 34;
 	}
 
-	else if (AY > 0) //ステックが下に倒れていたら
+	if (Player_X >= 608) //画面外に行ったら座標を戻す
 	{
-		Player_Y = Player_Y + Player_Speed;
-		Right = FALSE;
-		Left = FALSE;
+		Player_X = 606;
 	}
 
-	else if (AY < 0) //ステックが上に倒れていたら
+	if (Player_Y >= 448) //画面外に行ったら座標を戻す。
 	{
-		Player_Y = Player_Y - Player_Speed;
-		Right = FALSE;
-		Left = FALSE;
+		Player_Y = 446;
 	}
-	else
+
+	if (Player_Y <= 32)//画面外に行ったら座標を戻す。
 	{
-		Right = FALSE;
-		Left = FALSE;
+		Player_Y = 34;
 	}
+
 }
 
 void  Player::ImageSwitching() //プレイヤー画像切り替え
