@@ -44,11 +44,11 @@ void Player::Draw() const
 {
 	if (Left == TRUE) //ç∂
 	{
-		DrawRotaGraph(Player_X, Player_Y, 1.5f, M_PI / 2, Player_images[Player_Type], TRUE);
+		DrawRotaGraph(Player_X, Player_Y, 1.5f,M_PI , Player_images[Player_Type], TRUE); //ç∂Ç…åXÇØÇ≥ÇπÇÈÇÃÇÕë“ã@
 	}
 	else if (Right == TRUE)
 	{
-		DrawRotaGraph(Player_X, Player_Y, 1.5f, M_PI, Player_images[Player_Type], TRUE);
+		DrawRotaGraph(Player_X, Player_Y, 1.5f, M_PI/4, Player_images[Player_Type], TRUE);
 	}
 	
 	else
