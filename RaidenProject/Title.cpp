@@ -13,6 +13,7 @@ void  Title::Update()
     
     //文字の表示（点滅）
     Title_Drawingtime++;  //描画時間を +１していく
+
      if (Title_Drawingtime > 60)
     {
         Title_Drawingtime = 0; //リセット
@@ -42,8 +43,10 @@ void Title::Draw() const
 
 AdstractScene* Title::ChangeScene()
 {
-    if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_A) { //パットのAボタンが押されたら
-        //次のシーンに移行
+    if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_A) 
+    { //パットのAボタンが押されたら
+        
+      //次のシーンに移行
         return new GameMain(); //ゲームメインに移行
     }
     return this; //自分自身のポインタを返す。　
