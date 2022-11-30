@@ -19,7 +19,7 @@ void  Title::Update()
 	}
 
 	if (CheckSoundMem(Title_BGM) != 1) {   //BGM‚ª—¬‚ê‚Ä‚¢‚È‚©‚Á‚½‚çÄ¶
-		ChangeVolumeSoundMem(255 * 80 / 100, Title_BGM); //BGM‰¹—Ê’²® 255Å‘å‰¹—Ê‚©‚ç80%Ä¶
+		ChangeVolumeSoundMem(255 * 80 / 100, Title_BGM); //BGM‰¹—Ê’²® 255Å‘å‰¹—Ê‚©‚ç80%Ä¶‚·‚éB
 		PlaySoundMem(Title_BGM, DX_PLAYTYPE_LOOP, TRUE); //BGMÄ¶
 	}
 }

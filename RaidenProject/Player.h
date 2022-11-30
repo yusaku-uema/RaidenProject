@@ -34,4 +34,5 @@ public:
 	int GetScore();
 	void Operation(); //ƒvƒŒƒCƒ„[‘€ì
 	void ImageSwitching(); //‰æ‘œØ‚è‘Ö‚¦
+	
 };

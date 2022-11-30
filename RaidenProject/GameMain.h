@@ -2,11 +2,15 @@
 #include"AdstractScene.h"
 #include"Player.h"
 
+class Player;
+
 class GameMain : public AdstractScene
 {
 private:
 	//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
 	Player* player;
+
+	int Stage_Images; //ステージ画像
 
 public:
 
