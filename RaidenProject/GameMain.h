@@ -1,14 +1,15 @@
 #pragma once
 #include"AdstractScene.h"
 #include"Player.h"
+#include"Enemy.h"
 
-class Player;
 
 class GameMain : public AdstractScene
 {
 private:
 	//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
 	Player* player;
+	Enemy* enemy;
 
 	int Stage_Images; //ステージ画像
 
