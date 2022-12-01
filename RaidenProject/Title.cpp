@@ -45,6 +45,8 @@ AdstractScene* Title::ChangeScene()
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_A)
 	{ //パットのAボタンが押されたら
 
+		StopSoundMem(Title_BGM); //タイトルBGM停止
+
 	  //次のシーンに移行
 		return new GameMain(); //ゲームメインに移行
 	}

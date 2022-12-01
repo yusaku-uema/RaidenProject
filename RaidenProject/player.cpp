@@ -44,16 +44,16 @@ void Player::Draw() const
 {
 	if (Left == TRUE) //左
 	{
-		DrawRotaGraph(Player_X, Player_Y, 1.5f,(M_PI / 180 )* -45, Player_images[Player_Type], TRUE); //左に傾けさせるのは待機
+		DrawRotaGraph(Player_X, Player_Y, 1.5f,(M_PI / 180 )* -45, Player_images[Player_Type], TRUE); //画像、左に傾け
 	}
 	else if (Right == TRUE)
 	{
-		DrawRotaGraph(Player_X, Player_Y, 1.5f,( M_PI/180) * 45, Player_images[Player_Type], TRUE);
+		DrawRotaGraph(Player_X, Player_Y, 1.5f,( M_PI/180) * 45, Player_images[Player_Type], TRUE); //画像、右に傾け
 	}
 	
 	else
 	{
-		DrawRotaGraph(Player_X, Player_Y, 1.5f, 0, Player_images[Player_Type], TRUE);
+		DrawRotaGraph(Player_X, Player_Y, 1.5f, 0, Player_images[Player_Type], TRUE); //画像真っ直ぐ
 	}
 
 
