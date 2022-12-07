@@ -1,17 +1,22 @@
 #include"SphereCollider.h"
 
-//SphereCollider:: SphereCollider() {
-//
-//}
-//
-//float SphereCollider::HitSphere() {
-//
-//}
-//
-//float SphereCollider::GetLocation() {
-//
-//}
-//
-//float SphereCollider::SetLocation() {
-//
-//}
+SphereCollider:: SphereCollider() 
+{
+	location = 0;
+	radius = 0;
+}
+
+void SphereCollider::HitSphere() 
+{
+
+}
+
+void SphereCollider::GetLocation() 
+{
+
+}
+
+void SphereCollider::SetLocation() 
+{
+	
+}

@@ -30,7 +30,7 @@ public:
 	virtual void Update()override; //描画処理以外
 	virtual void Draw()const override; //描画
 	virtual void Hit()override;
-	void LifeCheck();
+	int LifeCheck();
 	int GetScore();
 	void Operation(); //プレイヤー操作
 	void ImageSwitching(); //画像切り替え

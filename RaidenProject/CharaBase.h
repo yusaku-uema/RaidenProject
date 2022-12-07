@@ -3,10 +3,8 @@
 class CharaBase
 {
 private:
-	//ƒ|ƒCƒ“ƒ^”z—ñ
-	//int* bullets[5];
-	float Speed;
-	int  Bullest_image; //’eŠÛ’e
+	int Speed;
+	int Bullest_image; //’eŠÛ’e
 public:
 	virtual void Update() = 0;
 	virtual void Draw() const = 0;

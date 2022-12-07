@@ -160,7 +160,18 @@ void  Player::ImageSwitching() //プレイヤー画像切り替え
 
 }
 
-void Player::Hit()
+void Player::Hit() //攻撃が当たったのか
 {
 
+}
+
+int Player::LifeCheck()
+{
+
+	if (Life == -1) //ライフが-1ならTRUEを返す
+	{
+		return TRUE;
+	}
+
+	return FALSE;
 }
