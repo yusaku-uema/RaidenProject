@@ -175,3 +175,8 @@ int Player::LifeCheck()
 
 	return FALSE;
 }
+
+int Player::GetScore()
+{
+	return 0; //•Û—¯
+}

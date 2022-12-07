@@ -6,7 +6,7 @@ class Player : public CharaBase
 private:
 
 	//Key
-	int g_KeyFlg; 
+	int g_KeyFlg;  
 	int g_OldKey; //古いkey
 	int g_NowKey; //現在のKey
 	int AX, AY; //コントローラのステック入力
