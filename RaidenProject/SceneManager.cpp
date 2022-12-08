@@ -1,12 +1,12 @@
 #include<stdio.h>
 #include"SceneManager.h"
 
+
+//コンストラクタ   初期化
 SceneManager::SceneManager(AdstractScene* scene)
 {
 	m_Scene = scene; //子どものクラスのデータをm_Sceneに入れる 
 }
-//コンストラクタ   初期化
-
 
 void SceneManager::Update()
 {

@@ -17,12 +17,13 @@ private:
 	//自機
 	int Score; //スコア
 	int Life; //残り残機
+	bool Invincible_Flag; //ボムを使っている間無敵状態、今無敵状態なのかを確認するフラグ
 	int Player_images[4]; //プレイヤーイメージ画像
 	int Player_Type; //プレイヤー画像番号
 	int Image_time; //プレイヤー画像切り替え
-	int Player_Speed; //速度
-	int Player_X; //プレイヤーX座標
-	int Player_Y; //プレイヤーY座標
+	float Player_Speed; //速度
+	float Player_X; //プレイヤーX座標
+	float Player_Y; //プレイヤーY座標
 
 
 public:
@@ -31,7 +32,7 @@ public:
 	virtual void Draw()const override; //描画
 	virtual void Hit()override;
 	int LifeCheck();
-	int GetScore();
+	int GetScore(); 
 	void Operation(); //プレイヤー操作
 	void ImageSwitching(); //画像切り替え
 	

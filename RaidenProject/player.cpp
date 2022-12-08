@@ -3,8 +3,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#define NORMAL 2;
-#define ATTACK 1;
+#define NORMAL 2.2;
+#define ATTACK 1.2;
 
 Player::Player()
 {
@@ -24,6 +24,7 @@ Player::Player()
 	Player_Speed = NORMAL;
 	Right = FALSE;
 	Left = FALSE;
+	Invincible_Flag = FALSE;
 }
 
 void Player::Update()
@@ -42,6 +43,12 @@ void Player::Update()
 
 void Player::Draw() const
 {
+
+	if (g_KeyFlg & PAD_INPUT_4) //RBボタンを押し続けているか。
+	{
+		DrawFormatString(320, 240, 0xFFFFFF, "yusaku");
+	}
+
 	if (Left == TRUE) //左
 	{
 		DrawRotaGraph(Player_X, Player_Y, 1.5f,(M_PI / 180 )* -45, Player_images[Player_Type], TRUE); //画像、左に傾け
@@ -56,11 +63,16 @@ void Player::Draw() const
 		DrawRotaGraph(Player_X, Player_Y, 1.5f, 0, Player_images[Player_Type], TRUE); //画像真っ直ぐ
 	}
 
-
 }
 
 void  Player::Operation() //プレイヤー操作
 {
+
+	if (g_KeyFlg && PAD_INPUT_4) //RBボタンを押し続けているか。
+	{
+		Invincible_Flag = TRUE;
+		DrawFormatString(320, 240, 0xFFFFFF, "yusaku");
+	}
 
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_5) //LBボタンを押し続けているか。
 	{
@@ -74,16 +86,34 @@ void  Player::Operation() //プレイヤー操作
 	}
 	if (Player_X < 640 - 32 && Player_Y < 480 - 32 && Player_X > 32 && Player_Y > 32)
 	{
-		if (AX > 0) //ステックが右に倒れていたら
+		if (AX > 0 && AY > 0) //ステックが右&下に倒れていたら
 		{
 			Player_X = Player_X + Player_Speed;
+			Player_Y = Player_Y + Player_Speed;
 			Right = TRUE;
 			Left = FALSE;
 		}
 
-		else if (AX < 0) //ステックが左に倒れていたら
+		else if (AX > 0 && AY < 0) //ステックが右&上に倒れていたら
+		{
+			Player_X = Player_X + Player_Speed;
+			Player_Y = Player_Y - Player_Speed;
+			Right = TRUE;
+			Left = FALSE;
+		}
+
+		else if (AX < 0 && AY < 0) //ステックが左&上に倒れていたら
 		{
 			Player_X = Player_X - Player_Speed;
+			Player_Y = Player_Y - Player_Speed;
+			Left = TRUE;
+			Right = FALSE;
+		}
+
+		else if (AX < 0 && AY > 0) //ステックが左&下に倒れていたら
+		{
+			Player_X = Player_X - Player_Speed;
+			Player_Y = Player_Y + Player_Speed;
 			Left = TRUE;
 			Right = FALSE;
 		}
@@ -101,6 +131,21 @@ void  Player::Operation() //プレイヤー操作
 			Right = FALSE;
 			Left = FALSE;
 		}
+
+		else if (AX > 0) //ステックが右に倒れていたら
+		{	
+			Player_X = Player_X + Player_Speed;
+			Right = TRUE;
+			Left = FALSE;
+		}
+
+		else if (AX < 0 ) //ステックが左に倒れていたら
+		{
+			Player_X = Player_X - Player_Speed;
+			Left = TRUE;
+			Right = FALSE;
+		}
+
 		else //何も操作していない。
 		{
 			Right = FALSE;

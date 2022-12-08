@@ -19,7 +19,7 @@ void  Title::Update()
 	}
 
 	if (CheckSoundMem(Title_BGM) != 1) {   //BGMが流れていなかったら再生
-		ChangeVolumeSoundMem(255 * 80 / 100, Title_BGM); //BGM音量調整 255最大音量から80%再生する。
+		ChangeVolumeSoundMem(255 * 20 / 100, Title_BGM); //BGM音量調整 255最大音量から20%再生する。
 		PlaySoundMem(Title_BGM, DX_PLAYTYPE_LOOP, TRUE); //BGM再生
 	}
 }
@@ -43,15 +43,13 @@ void Title::Draw() const
 AdstractScene* Title::ChangeScene()
 {
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_A)
-	{ //パットのAボタンが押されたら
-
+	{ 
+		//パットのAボタンが押されたら
 		StopSoundMem(Title_BGM); //タイトルBGM停止
 
 	  //次のシーンに移行
 		return new GameMain(); //ゲームメインに移行
 	}
+
 	return this; //自分自身のポインタを返す。　
 }
-
-
-

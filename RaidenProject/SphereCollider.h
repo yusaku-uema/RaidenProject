@@ -2,9 +2,11 @@
 
 class SphereCollider
 {
+
 private:
-	float location; //中心座標
-	float radius; //半径
+	int location; //中心座標
+	int radius; //半径
+
 public:
 	SphereCollider();
 	void  HitSphere();

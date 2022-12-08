@@ -38,7 +38,7 @@ AdstractScene* GameMain::ChangeScene()
 	{
 		delete(player);
 		delete(enemy);
-		//return ゲームオーバー 
+		//return new Gameover()
 	}
 
 	return this;
