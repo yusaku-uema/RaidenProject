@@ -3,7 +3,7 @@
 class CharaBase
 {
 private:
-	int Speed;
+	float Speed;
 	int Image;
 public:
 	CharaBase();

@@ -2,11 +2,11 @@
 
 BulletsBase::BulletsBase()
 {
-	damage = 0;
-	speed = 0;
+	Damage = 10;
+	Speed = 3.5;
 }
 
-void BulletsBase::GetDamage()
+int BulletsBase::GetDamage()
 {
-
+	return Damage;
 }

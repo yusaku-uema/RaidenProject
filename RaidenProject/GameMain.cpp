@@ -6,7 +6,7 @@ GameMain::GameMain()
 	//deleteするのを、忘れないように
 	player = new Player(); //プレイヤークラスのデータ確保
 	enemy = new Enemy(); //敵クラスデータ確保
-	Stage_Images = LoadGraph("images/Stage/stage.png"); //ステージ画像読込み
+	Stage_Images = LoadGraph("images/Stage/BbackgroundImage.png"); //ステージ画像読込み
 
 }
 
@@ -17,13 +17,19 @@ void GameMain::Update()
 	player->Update(); //プレイヤー処理
 	enemy->Update(); //敵処理
 
+
+	//ステージスクロール処理
+	Mileage += player->GetPlayerSpeed();
+
 }
 
 void GameMain::Draw()const
 {
 	//描画のみ
 
-	///DrawGraph(0, 0, Stage_Images, FALSE); //背景画像表示
+	DrawGraph(0, Mileage % 480 - 480, Stage_Images, FALSE);
+
+	DrawGraph(0, Mileage % 480, Stage_Images, FALSE);
 
 	enemy->Draw(); //敵表示
 	player->Draw(); //プレイヤー表示
@@ -46,5 +52,5 @@ AdstractScene* GameMain::ChangeScene()
 
 void GameMain::HitCheck()
 {
-
+	
 }

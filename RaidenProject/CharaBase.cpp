@@ -2,7 +2,7 @@
 
 CharaBase::CharaBase()
 {
-	Speed = 0;
+	Speed = 1.5;
 	Image = 0;
 }
 

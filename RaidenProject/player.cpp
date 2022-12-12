@@ -225,3 +225,8 @@ int Player::GetScore()
 {
 	return 0; //保留
 }
+
+float Player::GetPlayerSpeed()
+{
+	return Player_Speed; //プレイヤーのスピードを返す。
+}

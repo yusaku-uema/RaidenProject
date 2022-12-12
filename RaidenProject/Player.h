@@ -35,5 +35,5 @@ public:
 	int GetScore(); 
 	void Operation(); //プレイヤー操作
 	void ImageSwitching(); //画像切り替え
-	
+	float GetPlayerSpeed(); //プレイヤーのスピードを返す
 };

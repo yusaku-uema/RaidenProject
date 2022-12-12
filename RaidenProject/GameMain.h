@@ -12,6 +12,7 @@ private:
 	Enemy* enemy;
 
 	int Stage_Images; //ステージ画像
+	int Mileage; //走行距離
 
 public:
 
