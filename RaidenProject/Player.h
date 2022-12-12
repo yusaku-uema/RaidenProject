@@ -1,7 +1,8 @@
 #pragma once
 #include"CharaBase.h"
+#include"BulletsBase.h"
 
-class Player : public CharaBase
+class Player : public CharaBase 
 {
 private:
 
@@ -27,6 +28,9 @@ private:
 
 
 public:
+
+	//メンバ変数読み取り　http://www.s-cradle.com/developer/sophiaframework/tutorial/Cpp/access.html
+	// Player(CharaBase charabase); インターネットにあったやり方、メンバ変数を引数で参照？
 	Player(); //コンストラクタ
 	virtual void Update()override; //描画処理以外
 	virtual void Draw()const override; //描画

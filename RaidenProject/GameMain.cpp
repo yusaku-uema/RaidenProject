@@ -7,6 +7,7 @@ GameMain::GameMain()
 	player = new Player(); //プレイヤークラスのデータ確保
 	enemy = new Enemy(); //敵クラスデータ確保
 	Stage_Images = LoadGraph("images/Stage/BbackgroundImage.png"); //ステージ画像読込み
+	Mileage = 0; //走行距離
 
 }
 
@@ -25,10 +26,9 @@ void GameMain::Update()
 
 void GameMain::Draw()const
 {
-	//描画のみ
-
+	
+	//ステージ描画
 	DrawGraph(0, Mileage % 480 - 480, Stage_Images, FALSE);
-
 	DrawGraph(0, Mileage % 480, Stage_Images, FALSE);
 
 	enemy->Draw(); //敵表示
