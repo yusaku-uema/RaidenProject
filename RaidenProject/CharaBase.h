@@ -10,6 +10,6 @@ public:
 	virtual void Update() = 0;
 	virtual void Draw() const = 0;
 	virtual void Hit() = 0;
-	void GetBullets();
+	void GetBullets(); //íeä€?
 };
 
