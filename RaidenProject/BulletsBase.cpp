@@ -10,3 +10,8 @@ int BulletsBase::GetDamage()
 {
 	return Damage;
 }
+
+float BulletsBase::GetBulletsSpeed()
+{
+	return Speed;
+}

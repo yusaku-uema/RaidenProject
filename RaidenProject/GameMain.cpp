@@ -1,6 +1,14 @@
 #include"GameMain.h"
 #include"DxLib.h"
 
+
+//メモ
+//条件式の不等号は統一するほうがよい
+//例　　if(a < b)  < の向きで統一する　記述日01/11日4時間目
+//これ以降は <　の向きでよろしく。
+
+
+
 GameMain::GameMain()
 {
 	//deleteするのを、忘れないように
@@ -28,8 +36,8 @@ void GameMain::Draw()const
 {
 	
 	//ステージ描画
-	DrawGraph(0, Mileage % 480 - 480, Stage_Images, FALSE);
-	DrawGraph(0, Mileage % 480, Stage_Images, FALSE);
+	DrawGraph(0, Mileage % 480 - 480, Stage_Images, FALSE);//画像が続いているように見えるように描画
+	DrawGraph(0, Mileage % 480, Stage_Images, FALSE);//描画
 
 	enemy->Draw(); //敵表示
 	player->Draw(); //プレイヤー表示

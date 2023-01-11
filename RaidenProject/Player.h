@@ -2,7 +2,7 @@
 #include"CharaBase.h"
 #include"BulletsBase.h"
 
-class Player : public CharaBase 
+class Player : public CharaBase , public BulletsBase 
 {
 private:
 
