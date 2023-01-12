@@ -5,12 +5,15 @@ private:
 	int Damage; //—^‚¦‚éƒ_ƒ[ƒW
 	float Speed; //’e‚Ì‘¬“x
 
-	struct PlayerBullets
+	struct Bullets
 	{
-		float x;
-		float y;
-
+		float x; //’eŠÛÀ•W
+		float y; //’eŠÛÀ•W
+		bool Bulletslost; //’e‚ª‰æ–Ê‚É‚ ‚é‚©
 	};
+	struct Bullets PlayerBullets[100];
+	struct Bullets EnemyBullets[100];
+	
 
 public:
 	BulletsBase();

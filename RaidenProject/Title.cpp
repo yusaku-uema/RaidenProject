@@ -13,7 +13,7 @@ void  Title::Update()
 	//文字の表示（点滅）
 	Title_Drawingtime++;  //描画時間を +１していく
 
-	if (Title_Drawingtime > 60) 
+	if (Title_Drawingtime > 60) //61になったらif分の中の処理をおこなう。
 	{
 		Title_Drawingtime = 0; //リセット
 	}

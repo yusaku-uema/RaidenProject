@@ -30,12 +30,12 @@ private:
 public:
 
 	//メンバ変数読み取り　http://www.s-cradle.com/developer/sophiaframework/tutorial/Cpp/access.html
-	// Player(CharaBase charabase); インターネットにあったやり方、メンバ変数を引数で参照？
+	//インターネットにあったやり方.
 	Player(); //コンストラクタ
 	virtual void Update()override; //描画処理以外
 	virtual void Draw()const override; //描画
 	virtual void Hit()override;
-	int LifeCheck();
+	int LifeCheck(); //プレイヤー残機
 	int GetScore(); 
 	void Operation(); //プレイヤー操作
 	void ImageSwitching(); //画像切り替え
