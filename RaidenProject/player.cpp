@@ -71,7 +71,7 @@ void  Player::Operation() //プレイヤー操作
 	if (g_KeyFlg && PAD_INPUT_4) //RBボタンを押し続けているか。
 	{
 		Invincible_Flag = TRUE;
-		DrawFormatString(320, 240, 0xFFFFFF, "yusaku");
+		DrawFormatString(320, 240, 0xFFFFFF, "ボム");
 	}
 
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_5) //LBボタンを押し続けているか。
@@ -229,4 +229,29 @@ int Player::GetScore()
 float Player::GetPlayerSpeed()
 {
 	return Player_Speed; //プレイヤーのスピードを返す。
+}
+
+float Player::GetPlayer_X()
+{
+	return Player_X;
+}
+
+float Player::GetPlayer_Y()
+{
+	return Player_Y;
+}
+
+bool Player::GetRight()
+{
+	return Right;
+}
+
+bool Player::GetLeft()
+{
+	return Left;
+}
+
+bool Player::GetShooting_Flag()
+{
+	return Shooting_Flag;
 }

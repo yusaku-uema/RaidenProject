@@ -1,16 +1,19 @@
 #pragma once
 #include "CharaBase.h"
+#include"BulletsBase.h"
 #define EnemyMax 15 //敵の数最大
 
-class Enemy :public CharaBase
+class Enemy :public CharaBase,public BulletsBase
 {
 private:
+	int EnemyTime; //敵の出現間隔
 	int Bomber_Images; //爆撃機
-	int Heri_Images; //ヘリコプター
+	int Heri_Images[3]; //ヘリコプター
 	int EnemyBoss_Images; //ボス画像
 	int Jetfighter_Images; //ジェット戦闘機
 	int MesserschmittMe262; //メッサーシュミット画像
 	int Enemynum; //現在の敵の数
+
 	struct Enemyinformation
 	{
 		float x; //座標
