@@ -34,7 +34,7 @@ public:
 	Player(); //コンストラクタ
 	virtual void Update()override; //描画処理以外
 	virtual void Draw()const override; //描画
-	virtual void Hit()override;
+	virtual void  Hit()override;
 	int LifeCheck(); //プレイヤー残機
 	int GetScore(); //スコア
 	void Operation(); //プレイヤー操作

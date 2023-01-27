@@ -205,9 +205,9 @@ void  Player::ImageSwitching() //ƒvƒŒƒCƒ„[‰æ‘œØ‚è‘Ö‚¦
 
 }
 
-void Player::Hit() //UŒ‚‚ª“–‚½‚Á‚½‚Ì‚©
+void  Player::Hit() //UŒ‚‚ª“–‚½‚Á‚½‚Ì‚©
 {
-
+	
 }
 
 int Player::LifeCheck()

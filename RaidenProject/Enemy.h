@@ -18,6 +18,8 @@ private:
 	{
 		float x; //À•W
 		float y; //À•W
+		float CollisionX;
+		float CollisionY;
 		int HP; //“GHP
 		int Point; //“G‚ğ“|‚µ‚½‚Ìƒ|ƒCƒ“ƒg
 		int EnemyTyper; //“G‚Ìí—Ş
@@ -30,7 +32,10 @@ public:
 	void Update()override;
 	void Draw()const override;
 	void Hit()override;
-	void HpCheck();
+	float CreateHit(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2); //“G¶¬‚ÉA“G“¯m‚ªd‚È‚ç‚È‚¢‚æ‚¤‚É
+	void CreateEnemy(); //“G¶¬
+	void AliveEnemy(); //“G‚ª¶‚«‚Ä‚¢‚é‚Ì‚©i‰æ–ÊŠOAHP‚ª‚È‚­‚È‚Á‚½j
+	void HPCheck();
 	void GetPoint();
 };
 
