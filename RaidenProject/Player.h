@@ -25,7 +25,12 @@ private:
 	float Player_Speed; //速度
 	float Player_X; //プレイヤーX座標
 	float Player_Y; //プレイヤーY座標
+	//プレイヤーの弾丸
+	int Shooting_Time; //ボタンを押している時の時間
+	int Bullet_num; //弾丸の数
+	int DrawBullet; 
 
+	struct Bullets PlayerBullets[100]; //プレイヤーの弾丸の情報
 
 public:
 
@@ -35,6 +40,8 @@ public:
 	virtual void Update()override; //描画処理以外
 	virtual void Draw()const override; //描画
 	virtual void  Hit()override;
+	void Bullet(); //プレイヤーの弾丸処理
+	void ShootBullet(); //発射中の弾丸処理
 	int LifeCheck(); //プレイヤー残機
 	int GetScore(); //スコア
 	void Operation(); //プレイヤー操作

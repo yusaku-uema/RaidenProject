@@ -3,8 +3,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#define NORMAL 2.2;
-#define ATTACK 1.2;
+#define NORMAL 2.2; //プレイヤーの通常移動
+#define ATTACK 2.2; //攻撃状態の移動速度　　（遅くするか、もしくはそのままか迷っている）
 
 Player::Player()
 {
@@ -25,6 +25,16 @@ Player::Player()
 	Right = FALSE;
 	Left = FALSE;
 	Invincible_Flag = FALSE;
+	Bullet_num = 0;
+	DrawBullet = 0;
+
+	for (int i = 0; i < 100; i++)
+	{
+		SetBullets_flg(i, true); //画面外もしくは、存在にしてない。
+		SetBullets_X(i, 0);
+		SetBullets_Y(i, 0);
+	}
+
 }
 
 void Player::Update()
@@ -35,10 +45,10 @@ void Player::Update()
 	g_KeyFlg = g_NowKey & ~g_OldKey;
 
 	GetJoypadAnalogInput(&AX, &AY, DX_INPUT_PAD1); //ステック入力取得
-
+    ShootBullet();
 	Operation(); //プレイヤー操作
 	ImageSwitching(); //プレイヤー画像切り替え
-
+	
 }
 
 void Player::Draw() const
@@ -49,21 +59,59 @@ void Player::Draw() const
 		DrawFormatString(320, 240, 0xFFFFFF, "yusaku");
 	}
 
-	if (Left == TRUE) //左
+	if (Left == TRUE) //左に傾いている画像
 	{
-		DrawRotaGraph(Player_X, Player_Y, 1.5f,(M_PI / 180 )* -45, Player_images[Player_Type], TRUE); //画像、左に傾け
+		DrawRotaGraph(Player_X, Player_Y, 1.5f, (M_PI / 180) * -45, Player_images[Player_Type], TRUE); //画像、左に傾け
 	}
-	else if (Right == TRUE)
+	else if (Right == TRUE) //右に傾いている画像
 	{
-		DrawRotaGraph(Player_X, Player_Y, 1.5f,( M_PI/180) * 45, Player_images[Player_Type], TRUE); //画像、右に傾け
+		DrawRotaGraph(Player_X, Player_Y, 1.5f, (M_PI / 180) * 45, Player_images[Player_Type], TRUE); //画像、右に傾け
 	}
-	
+
 	else
 	{
 		DrawRotaGraph(Player_X, Player_Y, 1.5f, 0, Player_images[Player_Type], TRUE); //画像真っ直ぐ
 	}
 
+	for (int i = 0; i < 100; i++)
+	{
+		if(GetBullets_flg(i) == false)DrawCircle(GetBullets_X(i), GetBullets_Y(i), 5, GetColor(255, 0, 255), TRUE);//弾描画
+	}
 }
+
+void Player::Bullet()
+{
+	if (Shooting_Time++ % 10 == 0)//弾丸発射間隔
+	{
+		bool a = TRUE; //
+		for (int i = 0; i < 100; i++)
+		{
+			if (Shooting_Flag == TRUE) {
+				if (GetBullets_flg(i) == true && a == TRUE)
+				{
+					SetBullets_flg(i, false);
+					SetBullets_X(i, Player_X);
+					SetBullets_Y(i, Player_Y - 18);
+					a = FALSE;
+				}
+			}
+		}
+		
+	}
+
+}
+
+void  Player::ShootBullet()
+{
+	for (int i = 0; i < 100; i++)
+	{
+		if (GetBullets_flg(i) == false)
+		{
+			SetBullets_Y(i, GetBullets_Y(i) - 3.5);
+		}
+	}
+}
+
 
 void  Player::Operation() //プレイヤー操作
 {
@@ -78,6 +126,7 @@ void  Player::Operation() //プレイヤー操作
 	{
 		Shooting_Flag = TRUE; //射撃開始
 		Player_Speed = ATTACK; //移動速度低下
+		Bullet();
 	}
 	else
 	{
@@ -133,13 +182,13 @@ void  Player::Operation() //プレイヤー操作
 		}
 
 		else if (AX > 0) //ステックが右に倒れていたら
-		{	
+		{
 			Player_X = Player_X + Player_Speed;
 			Right = TRUE;
 			Left = FALSE;
 		}
 
-		else if (AX < 0 ) //ステックが左に倒れていたら
+		else if (AX < 0) //ステックが左に倒れていたら
 		{
 			Player_X = Player_X - Player_Speed;
 			Left = TRUE;
@@ -173,6 +222,17 @@ void  Player::Operation() //プレイヤー操作
 		Player_Y = 34;
 	}
 
+	for (int i = 0; i < 100; i++)
+	{
+		if (GetBullets_flg(i) == false) {
+			if (GetBullets_X(i) < 0 || GetBullets_X(i) > 620 || GetBullets_Y(i) > 480 || GetBullets_Y(i) < -10)
+			{
+				SetBullets_flg(i, true);
+				SetBullets_X(i, 0);
+				SetBullets_Y(i, 0);
+			}
+		}
+	}
 }
 
 void  Player::ImageSwitching() //プレイヤー画像切り替え
@@ -207,7 +267,7 @@ void  Player::ImageSwitching() //プレイヤー画像切り替え
 
 void  Player::Hit() //攻撃が当たったのか
 {
-	
+
 }
 
 int Player::LifeCheck()
