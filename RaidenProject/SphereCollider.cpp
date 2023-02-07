@@ -11,9 +11,9 @@ void SphereCollider::HitSphere()
 
 }
 
-void SphereCollider::GetLocation() 
+int  SphereCollider::GetLocation() 
 {
-
+	return location;
 }
 
 void SphereCollider::SetLocation() 

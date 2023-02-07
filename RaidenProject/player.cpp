@@ -265,7 +265,7 @@ void  Player::ImageSwitching() //プレイヤー画像切り替え
 
 }
 
-void  Player::Hit() //攻撃が当たったのか
+void  Player::Hit() //攻撃が当たった時の処理、当たったのかを判断するのは、SphereCollider
 {
 
 }

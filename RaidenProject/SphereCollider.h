@@ -2,7 +2,7 @@
 
 class SphereCollider
 {
-
+	//“–‚½‚è”»’è
 private:
 	int location; //’†SÀ•W
 	int radius; //”¼Œa
@@ -10,6 +10,6 @@ private:
 public:
 	SphereCollider();
 	void  HitSphere();
-	void  GetLocation();
+	int  GetLocation();
 	void  SetLocation();
 };

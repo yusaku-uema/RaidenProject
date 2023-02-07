@@ -1,6 +1,7 @@
 #pragma once
 #include"CharaBase.h"
 #include"BulletsBase.h"
+#include"SphereCollider.h"
 
 class Player : public CharaBase , public BulletsBase 
 {
