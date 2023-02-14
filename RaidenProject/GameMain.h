@@ -10,7 +10,7 @@ class GameMain : public AdstractScene
 private:
 	//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
 	Player* player;
-	Enemy* enemy;
+	Enemy* enemy[EnemyMax];
 
 	int Stage_Images; //ステージ画像
 	int Mileage; //走行距離
@@ -19,6 +19,9 @@ public:
 
 	//コンストラクタ
 	GameMain();
+
+	//デストラクタ
+	~GameMain();
 
 	//描画以下の更新を実施する
 	void Update() override;

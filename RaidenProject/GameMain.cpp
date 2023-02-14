@@ -8,25 +8,38 @@
 //これ以降は 不等号の向きを　<　の向きでよろしく。
 
 
-
+//コンストラクタ
 GameMain::GameMain()
 {
 	//deleteするのを、忘れないように
 	player = new Player(); //プレイヤークラスのデータ確保
-	enemy = new Enemy(); //敵クラスデータ確保
+	for (int i = 0; i < EnemyMax; i++) {
+		enemy[i] = new Enemy(); //敵クラスデータ確保
+	}
 	Stage_Images = LoadGraph("images/Stage/BbackgroundImage.png"); //ステージ画像読込み
 	Mileage = 0; //走行距離
 
 }
 
+//デストラクタ
+GameMain::~GameMain()
+{
+	delete player;
+	for (int i = 0; i < EnemyMax; i++) {
+		delete enemy[i];
+	}
+	
+}
 void GameMain::Update()
 {
 	//ここにゲームの処理
 
 	player->Update(); //プレイヤー処理
-	enemy->Update(); //敵処理
-
-
+	//敵処理
+	for (int i = 0; i < EnemyMax; i++) {
+		enemy[i]->Update();
+	}
+	 
 	//ステージスクロール処理
 	Mileage += player->GetPlayerSpeed();
 
@@ -38,8 +51,10 @@ void GameMain::Draw()const
 	//ステージ描画
 	DrawGraph(0, Mileage % 480 - 480, Stage_Images, FALSE);//画像が続いているように見えるように描画
 	DrawGraph(0, Mileage % 480, Stage_Images, FALSE);//描画
-
-	enemy->Draw(); //敵表示
+	for (int i = 0; i < EnemyMax; i++) {
+		enemy[i]->Draw(); //敵表示
+	}
+	
 	player->Draw(); //プレイヤー表示
 }
 
@@ -50,8 +65,6 @@ AdstractScene* GameMain::ChangeScene()
 
 	if (player->LifeCheck()==TRUE) //ライフが、０以下なら
 	{
-		delete(player);
-		delete(enemy);
 		//return new Gameover()
 	}
 
@@ -62,3 +75,4 @@ void GameMain::HitCheck()
 {
 	
 }
+

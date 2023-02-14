@@ -1,15 +1,21 @@
 #pragma once
 
-class SphereCollider
+struct Location
 {
-	//当たり判定
-private:
-	int location; //中心座標
-	int radius; //半径
+	float x; //中心座標(x)
+	float y; //中心座標(y)
+};
 
+
+class SphereCollider
+{ 
+protected:
+	int radius; //半径
+	Location location;//当たり判定
 public:
 	SphereCollider();
-	void  HitSphere();
-	int  GetLocation();
-	void  SetLocation();
+	bool HitSphere(Location location,Location location1); //当たり判定
+	Location GetLocation()const; //プレイヤーの中心座標を取得
+	
+
 };
