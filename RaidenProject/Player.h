@@ -1,7 +1,6 @@
 #pragma once
 #include"CharaBase.h"
 #include"BulletsBase.h"
-#include"SphereCollider.h"
 
 class Player : public CharaBase , public BulletsBase 
 {
@@ -28,16 +27,17 @@ private:
 	float Player_Y; //プレイヤーY座標
 	//プレイヤーの弾丸
 	int Shooting_Time; //ボタンを押している時の時間
-	int Bullet_num; //弾丸の数
+
 	int DrawBullet; 
 
-	struct Bullets PlayerBullets[100]; //プレイヤーの弾丸の情報
+	BulletsBase** bullets;  //弾の配列
 
 public:
 
 	//メンバ変数読み取り　http://www.s-cradle.com/developer/sophiaframework/tutorial/Cpp/access.html
 	//インターネットにあったやり方.
 	Player(); //コンストラクタ
+	~Player();
 	virtual void Update()override; //描画処理以外
 	virtual void Draw()const override; //描画
 	virtual void  Hit()override;

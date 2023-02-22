@@ -15,6 +15,7 @@ Player::Player()
 	Life = 0;
 	Player_X = 310;
 	Player_Y = 240;
+	
 	Player_Type = 0;
 	LoadDivGraph("images/Player/Zerofighter plane.png", 4, 32, 1, 32, 32, Player_images);
 	g_KeyFlg = 0;
@@ -25,17 +26,25 @@ Player::Player()
 	Right = FALSE;
 	Left = FALSE;
 	Invincible_Flag = FALSE;
-	Bullet_num = 0;
 	DrawBullet = 0;
+	Shooting_Time = 1;
 
 	for (int i = 0; i < 100; i++)
 	{
-		SetBullets_flg(i, true); //âÊñ äOÇ‡ÇµÇ≠ÇÕÅAë∂ç›Ç…ÇµÇƒÇ»Ç¢ÅB
-		SetBullets_X(i, 0);
-		SetBullets_Y(i, 0);
+		bullets = new BulletsBase * [100];
 	}
 
 }
+
+Player::~Player()
+{
+	for (int  i = 0; i < 100; i++)
+	{
+		delete bullets[i];
+	}
+	
+}
+
 
 void Player::Update()
 {
@@ -75,7 +84,7 @@ void Player::Draw() const
 
 	for (int i = 0; i < 100; i++)
 	{
-		if(GetBullets_flg(i) == false)DrawCircle(GetBullets_X(i), GetBullets_Y(i), 5, GetColor(255, 0, 255), TRUE);//íeï`âÊ
+		if (bullets[i] != nullptr)DrawCircle(bullets[i]->GetBullets().x, bullets[i]->GetBullets().y, 5, GetColor(255, 0, 255), TRUE);//íeï`âÊ
 	}
 }
 
@@ -83,17 +92,14 @@ void Player::Bullet()
 {
 	if (Shooting_Time++ % 10 == 0)//íeä€î≠éÀä‘äu
 	{
-		bool a = TRUE; //
 		for (int i = 0; i < 100; i++)
 		{
 			if (Shooting_Flag == TRUE) {
-				if (GetBullets_flg(i) == true && a == TRUE)
+				/*if (bullets[i] == nullptr)
 				{
-					SetBullets_flg(i, false);
-					SetBullets_X(i, Player_X);
-					SetBullets_Y(i, Player_Y - 18);
-					a = FALSE;
-				}
+					bullets[i]->SettingBullets(Player_X, Player_Y - 18);
+				}*/
+				bullets[i]->SettingBullets(Player_X, Player_Y - 18);
 			}
 		}
 		
@@ -101,14 +107,14 @@ void Player::Bullet()
 
 }
 
-void  Player::ShootBullet()
+void  Player::ShootBullet() //íeÇÃìÆÇ´
 {
 	for (int i = 0; i < 100; i++)
 	{
-		if (GetBullets_flg(i) == false)
+		/*if (bullets[i] != nullptr)
 		{
-			SetBullets_Y(i, GetBullets_Y(i) - 3.5);
-		}
+			bullets[i]->SetBullets_Y(bullets[i]->GetBullets().y - bullets[i]->GetBulletsSpeed());
+		}*/
 	}
 }
 
@@ -224,12 +230,10 @@ void  Player::Operation() //ÉvÉåÉCÉÑÅ[ëÄçÏ
 
 	for (int i = 0; i < 100; i++)
 	{
-		if (GetBullets_flg(i) == false) {
-			if (GetBullets_X(i) < 0 || GetBullets_X(i) > 620 || GetBullets_Y(i) > 480 || GetBullets_Y(i) < -10)
+		if (bullets[i] != nullptr) {
+			if (bullets[i]->GetBullets().y > 480 || bullets[i]->GetBullets().y < -10)
 			{
-				SetBullets_flg(i, true);
-				SetBullets_X(i, 0);
-				SetBullets_Y(i, 0);
+				bullets[i] = nullptr;
 			}
 		}
 	}

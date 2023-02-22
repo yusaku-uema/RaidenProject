@@ -2,6 +2,7 @@
 #include"CharaBase.h"
 #include"BulletsBase.h"
 #include"SphereCollider.h"
+#include"Player.h"
 #define EnemyMax 6 //“G‚Ì”Å‘å
 
 
@@ -16,6 +17,7 @@ private:
 	int EnemyTime; //“G‚ÌoŒ»ŠÔŠu
 	int Bomber_Images; //”šŒ‚‹@
 	bool Enemylost; //“G‚ªoŒ»‚µ‚Ä‚¢‚é‚©
+	bool EnemyHit; //UŒ‚‚ğH‚ç‚Á‚½‚©B
 	
 
 public:
@@ -27,5 +29,6 @@ public:
 	void AliveEnemy(); //“G‚ª¶‚«‚Ä‚¢‚é‚Ì‚©i‰æ–ÊŠOAHP‚ª‚È‚­‚È‚Á‚½j
 	void HPCheck();
 	void GetPoint();
+	bool HitCheck(Player* player); //UŒ‚‚ğó‚¯‚½‚Ì‚©
 };
 

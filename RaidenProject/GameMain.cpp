@@ -12,10 +12,13 @@
 GameMain::GameMain()
 {
 	//deleteするのを、忘れないように
+
 	player = new Player(); //プレイヤークラスのデータ確保
+
 	for (int i = 0; i < EnemyMax; i++) {
 		enemy[i] = new Enemy(); //敵クラスデータ確保
 	}
+
 	Stage_Images = LoadGraph("images/Stage/BbackgroundImage.png"); //ステージ画像読込み
 	Mileage = 0; //走行距離
 

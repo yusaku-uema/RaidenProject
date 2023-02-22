@@ -63,3 +63,8 @@ void Enemy::Hit()
 {
 
 }
+
+bool Enemy::HitCheck(Player* player)
+{
+	return false;
+}

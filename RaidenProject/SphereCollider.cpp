@@ -3,25 +3,31 @@
 
 SphereCollider:: SphereCollider() 
 {
-	
+	radius = 5;
 }
 
-bool SphereCollider::HitSphere(Location PlayerLocatio, Location EnemyLocation)
+bool SphereCollider::HitSphere(SphereCollider* spherecollider)
 {
-	float a = PlayerLocatio.x - EnemyLocation.x;
-	float b = PlayerLocatio.y - EnemyLocation.y;
-	float c = sqrt(a * a + b * b);
-	float sum_radius = 15 + 15;
+	bool ret = false;//返り値
+	float distance;	//中心座標の距離
 
+	//中心座標の距離の計算
+	distance = sqrtf(powf(spherecollider->GetLocation().x - location.x, 2) + powf(spherecollider->GetLocation().y - location.y, 2));
 
-	if (c <= sum_radius)
+	if (distance < radius + spherecollider->GetRadius()) //当たり判定
 	{
-		return true;
+		ret = true;
 	}
-	return false;
+
+	return ret;
 }
 
-Location SphereCollider::GetLocation()const 
+int SphereCollider::GetRadius()const
+{
+	return radius;
+}
+
+Location SphereCollider::GetLocation()
 {
 	return location;
 }
