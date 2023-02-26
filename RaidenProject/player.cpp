@@ -13,9 +13,9 @@ Player::Player()
 	Image_time = 0;
 	Score = 0;
 	Life = 0;
-	Player_X = 310;
-	Player_Y = 240;
-	
+	location.x = 310;
+	location.y = 240;
+	BulletNum = 0;
 	Player_Type = 0;
 	LoadDivGraph("images/Player/Zerofighter plane.png", 4, 32, 1, 32, 32, Player_images);
 	g_KeyFlg = 0;
@@ -31,18 +31,13 @@ Player::Player()
 
 	for (int i = 0; i < 100; i++)
 	{
-		bullets = new BulletsBase * [100];
+		Playerbullets[i] = new PlayerBullers();
 	}
-
 }
 
 Player::~Player()
 {
-	for (int  i = 0; i < 100; i++)
-	{
-		delete bullets[i];
-	}
-	
+	delete Playerbullets;
 }
 
 
@@ -54,10 +49,10 @@ void Player::Update()
 	g_KeyFlg = g_NowKey & ~g_OldKey;
 
 	GetJoypadAnalogInput(&AX, &AY, DX_INPUT_PAD1); //ステック入力取得
-    ShootBullet();
+	ShootBullet();
 	Operation(); //プレイヤー操作
 	ImageSwitching(); //プレイヤー画像切り替え
-	
+
 }
 
 void Player::Draw() const
@@ -70,39 +65,47 @@ void Player::Draw() const
 
 	if (Left == TRUE) //左に傾いている画像
 	{
-		DrawRotaGraph(Player_X, Player_Y, 1.5f, (M_PI / 180) * -45, Player_images[Player_Type], TRUE); //画像、左に傾け
+		DrawRotaGraph(location.x, location.y, 1.5f, (M_PI / 180) * -45, Player_images[Player_Type], TRUE); //画像、左に傾け
 	}
 	else if (Right == TRUE) //右に傾いている画像
 	{
-		DrawRotaGraph(Player_X, Player_Y, 1.5f, (M_PI / 180) * 45, Player_images[Player_Type], TRUE); //画像、右に傾け
+		DrawRotaGraph(location.x, location.y, 1.5f, (M_PI / 180) * 45, Player_images[Player_Type], TRUE); //画像、右に傾け
 	}
 
 	else
 	{
-		DrawRotaGraph(Player_X, Player_Y, 1.5f, 0, Player_images[Player_Type], TRUE); //画像真っ直ぐ
+		DrawRotaGraph(location.x, location.y, 1.5f, 0, Player_images[Player_Type], TRUE); //画像真っ直ぐ
 	}
 
 	for (int i = 0; i < 100; i++)
 	{
-		if (bullets[i] != nullptr)DrawCircle(bullets[i]->GetBullets().x, bullets[i]->GetBullets().y, 5, GetColor(255, 0, 255), TRUE);//弾描画
+		if (Playerbullets[i]->GetReset()!=true)
+		{
+			Playerbullets[i]->Draw();
+		}
 	}
+
 }
 
 void Player::Bullet()
 {
-	if (Shooting_Time++ % 10 == 0)//弾丸発射間隔
+	if (Shooting_Time++ % 20 == 0)//弾丸発射間隔
 	{
-		for (int i = 0; i < 100; i++)
+		if (BulletNum < 100)
 		{
-			if (Shooting_Flag == TRUE) {
-				/*if (bullets[i] == nullptr)
-				{
-					bullets[i]->SettingBullets(Player_X, Player_Y - 18);
-				}*/
-				bullets[i]->SettingBullets(Player_X, Player_Y - 18);
-			}
+			BulletNum++;
 		}
-		
+		else
+		{
+			BulletNum = 0;
+		}
+
+
+		if (Playerbullets[BulletNum]->GetReset()==true)
+		{
+			Playerbullets[BulletNum]->SetBullers(location.x, location.y - 18);
+		}
+
 	}
 
 }
@@ -111,10 +114,10 @@ void  Player::ShootBullet() //弾の動き
 {
 	for (int i = 0; i < 100; i++)
 	{
-		/*if (bullets[i] != nullptr)
+		if (Playerbullets[i]->GetReset() != true)
 		{
-			bullets[i]->SetBullets_Y(bullets[i]->GetBullets().y - bullets[i]->GetBulletsSpeed());
-		}*/
+			Playerbullets[i]->Update();
+		}
 	}
 }
 
@@ -139,64 +142,64 @@ void  Player::Operation() //プレイヤー操作
 		Shooting_Flag = FALSE; //通常状態
 		Player_Speed = NORMAL; //巡航速度に戻す
 	}
-	if (Player_X < 640 - 32 && Player_Y < 480 - 32 && Player_X > 32 && Player_Y > 32)
+	if (location.x < 640 - 32 && location.y < 480 - 32 && location.x > 32 && location.y > 32)
 	{
 		if (AX > 0 && AY > 0) //ステックが右&下に倒れていたら
 		{
-			Player_X = Player_X + Player_Speed;
-			Player_Y = Player_Y + Player_Speed;
+			location.x += Player_Speed;
+			location.y += Player_Speed;
 			Right = TRUE;
 			Left = FALSE;
 		}
 
 		else if (AX > 0 && AY < 0) //ステックが右&上に倒れていたら
 		{
-			Player_X = Player_X + Player_Speed;
-			Player_Y = Player_Y - Player_Speed;
+			location.x +=  Player_Speed;
+			location.y -=  Player_Speed;
 			Right = TRUE;
 			Left = FALSE;
 		}
 
 		else if (AX < 0 && AY < 0) //ステックが左&上に倒れていたら
 		{
-			Player_X = Player_X - Player_Speed;
-			Player_Y = Player_Y - Player_Speed;
+			location.x -= Player_Speed;
+			location.y -= Player_Speed;
 			Left = TRUE;
 			Right = FALSE;
 		}
 
 		else if (AX < 0 && AY > 0) //ステックが左&下に倒れていたら
 		{
-			Player_X = Player_X - Player_Speed;
-			Player_Y = Player_Y + Player_Speed;
+			location.x -=  Player_Speed;
+			location.y += Player_Speed;
 			Left = TRUE;
 			Right = FALSE;
 		}
 
 		else if (AY > 0) //ステックが下に倒れていたら
 		{
-			Player_Y = Player_Y + Player_Speed;
+			location.y +=Player_Speed;
 			Right = FALSE;
 			Left = FALSE;
 		}
 
 		else if (AY < 0) //ステックが上に倒れていたら
 		{
-			Player_Y = Player_Y - Player_Speed;
+			location.y -=Player_Speed;
 			Right = FALSE;
 			Left = FALSE;
 		}
 
 		else if (AX > 0) //ステックが右に倒れていたら
 		{
-			Player_X = Player_X + Player_Speed;
+			location.x += Player_Speed;
 			Right = TRUE;
 			Left = FALSE;
 		}
 
 		else if (AX < 0) //ステックが左に倒れていたら
 		{
-			Player_X = Player_X - Player_Speed;
+			location.x -= Player_Speed;
 			Left = TRUE;
 			Right = FALSE;
 		}
@@ -208,34 +211,24 @@ void  Player::Operation() //プレイヤー操作
 		}
 	}
 
-	if (Player_X <= 32) //画面外に行ったら座標を戻す
+	if (location.x <= 32) //画面外に行ったら座標を戻す
 	{
-		Player_X = 34;
+		location.x = 34;
 	}
 
-	if (Player_X >= 608) //画面外に行ったら座標を戻す
+	if (location.x >= 608) //画面外に行ったら座標を戻す
 	{
-		Player_X = 606;
+		location.x = 606;
 	}
 
-	if (Player_Y >= 448) //画面外に行ったら座標を戻す。
+	if (location.y >= 448) //画面外に行ったら座標を戻す。
 	{
-		Player_Y = 446;
+		location.y = 446;
 	}
 
-	if (Player_Y <= 32)//画面外に行ったら座標を戻す。
+	if (location.y <= 32)//画面外に行ったら座標を戻す。
 	{
-		Player_Y = 34;
-	}
-
-	for (int i = 0; i < 100; i++)
-	{
-		if (bullets[i] != nullptr) {
-			if (bullets[i]->GetBullets().y > 480 || bullets[i]->GetBullets().y < -10)
-			{
-				bullets[i] = nullptr;
-			}
-		}
+		location.y = 34;
 	}
 }
 
@@ -295,15 +288,6 @@ float Player::GetPlayerSpeed()
 	return Player_Speed; //プレイヤーのスピードを返す。
 }
 
-float Player::GetPlayer_X()
-{
-	return Player_X;
-}
-
-float Player::GetPlayer_Y()
-{
-	return Player_Y;
-}
 
 bool Player::GetRight()
 {

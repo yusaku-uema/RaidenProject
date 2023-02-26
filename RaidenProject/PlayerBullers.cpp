@@ -1,26 +1,46 @@
 #include "PlayerBullers.h"
-#include"Player.h"
+#include"DxLib.h"
 
 PlayerBullers::PlayerBullers()
 {
 	location.x = 0;
 	location.y = 0;
+	Reset = true;
+}
+
+void PlayerBullers::SetBullers(float x, float y)
+{
+	location.x = x;
+	location.y = y;
+	radius = 5;
+	Reset = false;
 }
 
 void PlayerBullers::Update()
 {
-	if (Shooting_Time++ % 10 == 0)//’eŠÛ”­ŽËŠÔŠu
+	if (Reset != true) //true‚¶‚á‚È‚©‚Á‚½‚ç
 	{
-		for (int i = 0; i < 100; i++)
-		{
-			if (Shooting_Flag == TRUE) {
-				/*if (bullets[i] == nullptr)
-				{
-					bullets[i]->SettingBullets(Player_X, Player_Y - 18);
-				}*/
-				bullets[i]->SettingBullets(Player_X, Player_Y - 18);
-			}
-		}
-
+		location.y--;
 	}
+
+	if (location.y > 480 || location.y < -10)
+	{
+		Reset = true;
+	}
+
+}
+
+void PlayerBullers::Draw()const
+{
+	if (Reset!=true)DrawCircle(location.x,location.y, radius, GetColor(255, 0, 255), TRUE);//’e•`‰æ
+}
+
+
+void PlayerBullers::SetReset(bool a)
+{
+	Reset = a;
+}
+bool PlayerBullers::GetReset()
+{
+	return Reset;
 }

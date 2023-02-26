@@ -1,8 +1,10 @@
 #pragma once
-#include"BulletsBase.h"
+#include"PlayerBullers.h"
 
-class CharaBase : public BulletsBase
+class CharaBase :public SphereCollider
 {
+protected:
+	PlayerBullers* Playerbullets[100];  //’e‚Ì”z—ñ
 private:
 	float Speed;
 	int Image;

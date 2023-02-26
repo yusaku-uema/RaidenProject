@@ -3,15 +3,20 @@
 
 class PlayerBullers :public BulletsBase
 {
+private:
+	bool Reset; //リセットフラグ（弾丸を打ち出す初期設定)
 
 public:
 	PlayerBullers();
-	PlayerBullers(float x, float y);
+	
 	void Update()override;
 	void Draw()const;
 	Location GetBullets();
 	int  GetDamage();
 	float GetBulletsSpeed();
+	void SetBullers(float x, float y);
+	void SetReset(bool a);
+	bool GetReset();
 };
 
 

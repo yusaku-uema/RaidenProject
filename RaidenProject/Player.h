@@ -1,8 +1,9 @@
 #pragma once
 #include"CharaBase.h"
 #include"BulletsBase.h"
+#include"PlayerBullers.h"
 
-class Player : public CharaBase , public BulletsBase 
+class Player : public CharaBase 
 {
 private:
 
@@ -23,14 +24,11 @@ private:
 	int Player_Type; //プレイヤー画像番号
 	int Image_time; //プレイヤー画像切り替え
 	float Player_Speed; //速度
-	float Player_X; //プレイヤーX座標
-	float Player_Y; //プレイヤーY座標
 	//プレイヤーの弾丸
 	int Shooting_Time; //ボタンを押している時の時間
-
+	int BulletNum;
 	int DrawBullet; 
 
-	BulletsBase** bullets;  //弾の配列
 
 public:
 
@@ -48,8 +46,6 @@ public:
 	void Operation(); //プレイヤー操作
 	void ImageSwitching(); //画像切り替え
 	float GetPlayerSpeed(); //プレイヤーのスピードを返す
-	float GetPlayer_X(); //プレイヤー座標
-	float GetPlayer_Y(); //プレイヤー座標
 	bool GetRight(); //右を向いているか
 	bool GetLeft();//左を向いているか
 	bool GetShooting_Flag(); //射撃しているのか

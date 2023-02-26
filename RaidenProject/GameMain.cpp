@@ -2,12 +2,6 @@
 #include"DxLib.h"
 
 
-//メモ
-//条件式の不等号は統一するほうがよい
-//例　　if(a < b)  < の向きで統一する　記述日01/11日4時間目
-//これ以降は 不等号の向きを　<　の向きでよろしく。
-
-
 //コンストラクタ
 GameMain::GameMain()
 {
@@ -17,6 +11,13 @@ GameMain::GameMain()
 
 	for (int i = 0; i < EnemyMax; i++) {
 		enemy[i] = new Enemy(); //敵クラスデータ確保
+	}
+
+
+
+	for (int i = 0; i < PLAYER_BULLETS; i++)
+	{
+
 	}
 
 	Stage_Images = LoadGraph("images/Stage/BbackgroundImage.png"); //ステージ画像読込み

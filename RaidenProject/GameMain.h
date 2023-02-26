@@ -1,9 +1,11 @@
 #pragma once
 #include"AdstractScene.h"
 #include"Player.h"
+#include"PlayerBullers.h"
 #include"Enemy.h"
+#include"BulletsBase.h"
 
-
+#define PLAYER_BULLETS 100 //プレイヤーの弾丸の数
 
 class GameMain : public AdstractScene
 {
@@ -11,6 +13,10 @@ private:
 	//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
 	Player* player;
 	Enemy* enemy[EnemyMax];
+
+	PlayerBullers* p_bullers[PLAYER_BULLETS];
+
+
 
 	int Stage_Images; //ステージ画像
 	int Mileage; //走行距離
