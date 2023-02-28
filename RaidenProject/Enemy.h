@@ -2,7 +2,7 @@
 #include"CharaBase.h"
 #include"BulletsBase.h"
 #include"Player.h"
-#define EnemyMax 8 //“G‚Ì”Å‘å
+#define EnemyMax 5 //“G‚Ì”Å‘å
 
 
 class Enemy :public CharaBase
@@ -25,10 +25,8 @@ public:
 	void Draw()const override;
 	void Hit(int a);
 	void CreateEnemy(); //“G¶¬
-	void Bullers();
 	void AliveEnemy(); //“G‚ª¶‚«‚Ä‚¢‚é‚Ì‚©i‰æ–ÊŠOAHP‚ª‚È‚­‚È‚Á‚½j
-	void HPCheck();
-	void GetPoint();
+	bool HPCheck();
 	float Enemy_Y();
 	int Getnum();
 	bool HitCheck(PlayerBullers* playerbullers); //UŒ‚‚ğó‚¯‚½‚Ì‚©

@@ -17,8 +17,6 @@ public:
 	void Update();
 	void Draw()const;
 	float GetBullets_Y();
-	int  GetDamage();
-	float GetBulletsSpeed();
 	void SetReset(bool a);
 	bool GetReset();
 };

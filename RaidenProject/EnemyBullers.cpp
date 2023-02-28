@@ -81,3 +81,14 @@ float EnemyBullers::GetBullets_Y()
 {
 	return location.y;
 }
+
+void EnemyBullers::SetReset(bool a)
+{
+	Reset = a;
+}
+
+bool EnemyBullers::GetReset()
+{
+	return Reset;
+}
+

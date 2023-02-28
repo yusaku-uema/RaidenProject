@@ -20,7 +20,7 @@ void PlayerBullers::Update()
 {
 	if (Reset != true) //true‚¶‚á‚È‚©‚Á‚½‚ç
 	{
-		location.y -= 3;
+		location.y -= 5;
 		if (location.y > 480 || location.y < -10)
 		{
 			Reset = true;

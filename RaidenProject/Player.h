@@ -54,5 +54,6 @@ public:
 	bool GetShooting_Flag(); //ËŒ‚‚µ‚Ä‚¢‚é‚Ì‚©
 	bool GetRest(int i);
 	PlayerBullers* GetBullet(int i)const;
+	bool HitCheck(EnemyBullers* Enemybullers); //UŒ‚‚ğó‚¯‚½‚Ì‚©
 	
 };

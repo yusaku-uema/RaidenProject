@@ -1,6 +1,7 @@
 #include"GameMain.h"
 #include"DxLib.h"
 #include"CharaBase.h"
+#include"Result.h"
 
 
 //コンストラクタ
@@ -18,6 +19,7 @@ GameMain::GameMain()
 	Mileage = 0; //走行距離
 	BullersTime = 1;
 	BullersNum = 0;
+	Enemy_num = 0;
 }
 
 //デストラクタ
@@ -49,10 +51,27 @@ void GameMain::Update()
 				{
 					player->SetBullet(j); //弾丸消去
 					enemy[i]->Hit(10); //HPを引く
+					if (enemy[i]->HPCheck() == true)Enemy_num++;
 				}
 
 			}
 
+		}
+	}
+
+	//敵の弾丸に当たったら
+	for (int i = 0; i < EnemyMax; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			if (player->HitCheck(enemy[i]->GetBullet(j)))
+			{
+				if (enemy[i]->GetBullet(j)->GetReset() == false)
+				{
+					enemy[i]->GetBullet(j)->SetReset(true);
+					player->Hit(1);
+				}
+			}
 		}
 	}
 
@@ -117,7 +136,7 @@ AdstractScene* GameMain::ChangeScene()
 
 	if (player->LifeCheck() == TRUE) //ライフが、０以下なら
 	{
-		//return new Gameover()
+		return new  Result(Enemy_num);
 	}
 
 	return this;

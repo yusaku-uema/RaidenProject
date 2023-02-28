@@ -60,10 +60,22 @@ void Enemy::CreateEnemy() //“G‚ğ¶¬
 void Enemy::AliveEnemy() //“G‚ª¶‚«‚Ä‚¢‚é‚Ì‚©‚ğ”»’f‚·‚éB
 {
 
-	if (location.y > 500 || HP <= 0)//“G‚Ì‚™À•W‚ª500‚æ‚è‚à‘å‚«‚­‚È‚Á‚½‚çA‚ ‚é‚¢‚Í‚g‚o‚ª0ˆÈ‰º‚Ìê‡
+	if (location.y > 500 )//“G‚Ì‚™À•W‚ª500‚æ‚è‚à‘å‚«‚­‚È‚Á‚½‚ç
 	{
 		Enemylost = true; //“G‚ğ€–S”»’è‚ÉØ‚è‘Ö‚¦
 	}
+}
+
+bool Enemy::HPCheck()
+{
+	bool ret = false;
+	if (HP < 0)
+	{
+		Enemylost = true;
+		ret = true;
+		return ret;
+	}
+	return ret;
 }
 
 

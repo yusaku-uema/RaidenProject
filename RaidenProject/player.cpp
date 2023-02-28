@@ -3,8 +3,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#define NORMAL 2.2; //プレイヤーの通常移動
-#define ATTACK 2.2; //攻撃状態の移動速度　　（遅くするか、もしくはそのままか迷っている）
+#define NORMAL 3.5; //プレイヤーの通常移動　
 
 Player::Player()
 {
@@ -12,9 +11,11 @@ Player::Player()
 	AY = 0;
 	Image_time = 0;
 	Score = 0;
-	Life = 0;
+	
+	Life = 15;
 	location.x = 310;
 	location.y = 240;
+	radius = 5;
 	BulletNum = 0;
 	Player_Type = 0;
 	LoadDivGraph("images/Player/Zerofighter plane.png", 4, 32, 1, 32, 32, Player_images);
@@ -57,8 +58,6 @@ void Player::Update()
 
 void Player::Draw() const
 {
-		DrawFormatString(320, 240, 0xFFFFFF, "%d", BulletNum);
-
 	if (Left == TRUE) //左に傾いている画像
 	{
 		DrawRotaGraph(location.x, location.y, 1.5f, (M_PI / 180) * -45, Player_images[Player_Type], TRUE); //画像、左に傾け
@@ -75,7 +74,7 @@ void Player::Draw() const
 
 	for (int i = 0; i < 100; i++)
 	{
-		if (Playerbullers[i]->GetReset()!=true)
+		if (Playerbullers[i]->GetReset() != true)
 		{
 			Playerbullers[i]->Draw();
 		}
@@ -97,7 +96,7 @@ void Player::Bullet()
 		}
 
 
-		if (Playerbullers[BulletNum]->GetReset()==true)
+		if (Playerbullers[BulletNum]->GetReset() == true)
 		{
 			Playerbullers[BulletNum]->SetBullers(location.x, location.y - 18);
 		}
@@ -121,16 +120,9 @@ void  Player::ShootBullet() //弾の動き
 void  Player::Operation() //プレイヤー操作
 {
 
-	if (g_KeyFlg && PAD_INPUT_4) //RBボタンを押し続けているか。
-	{
-		Invincible_Flag = TRUE;
-		DrawFormatString(320, 240, 0xFFFFFF, "ボム");
-	}
-
 	if (GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_5) //LBボタンを押し続けているか。
 	{
 		Shooting_Flag = TRUE; //射撃開始
-		Player_Speed = ATTACK; //移動速度低下
 		Bullet();
 	}
 	else
@@ -150,8 +142,8 @@ void  Player::Operation() //プレイヤー操作
 
 		else if (AX > 0 && AY < 0) //ステックが右&上に倒れていたら
 		{
-			location.x +=  Player_Speed;
-			location.y -=  Player_Speed;
+			location.x += Player_Speed;
+			location.y -= Player_Speed;
 			Right = TRUE;
 			Left = FALSE;
 		}
@@ -166,7 +158,7 @@ void  Player::Operation() //プレイヤー操作
 
 		else if (AX < 0 && AY > 0) //ステックが左&下に倒れていたら
 		{
-			location.x -=  Player_Speed;
+			location.x -= Player_Speed;
 			location.y += Player_Speed;
 			Left = TRUE;
 			Right = FALSE;
@@ -174,14 +166,14 @@ void  Player::Operation() //プレイヤー操作
 
 		else if (AY > 0) //ステックが下に倒れていたら
 		{
-			location.y +=Player_Speed;
+			location.y += Player_Speed;
 			Right = FALSE;
 			Left = FALSE;
 		}
 
 		else if (AY < 0) //ステックが上に倒れていたら
 		{
-			location.y -=Player_Speed;
+			location.y -= Player_Speed;
 			Right = FALSE;
 			Left = FALSE;
 		}
@@ -260,13 +252,13 @@ void  Player::ImageSwitching() //プレイヤー画像切り替え
 
 void  Player::Hit(int a) //攻撃が当たった時の処理、当たったのかを判断するのは、SphereCollider
 {
-
+	Life -= a;
 }
 
 int Player::LifeCheck()
 {
 
-	if (Life == -1) //ライフが-1ならTRUEを返す
+	if (Life <0) //ライフが-1ならTRUEを返す
 	{
 		return TRUE;
 	}
@@ -313,6 +305,18 @@ bool Player::GetRest(int i)
 PlayerBullers* Player::GetBullet(int i)const
 {
 	return Playerbullers[i];
+}
+
+bool Player::HitCheck(EnemyBullers* Enemybullers)
+{
+
+	bool ret = false; //戻り値
+
+	if (HitSphere(Enemybullers) == true)
+	{
+		ret = true;
+	}
+	return ret;
 }
 
 float Player::GetPlayer_X()

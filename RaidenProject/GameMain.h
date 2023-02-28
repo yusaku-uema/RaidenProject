@@ -17,6 +17,7 @@ private:
 	int Mileage; //‘–s‹——£
 	int BullersNum; //’eŠÛ‚Ì”
 	int BullersTime; //ŠÔ‚ªŒo‰ß‚·‚é‚²‚Æ‚É’eŠÛ”‚ª‘‚¦‚éB
+	int Enemy_num; //“|‚µ‚½“G
 
 public:
 
