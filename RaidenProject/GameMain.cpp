@@ -13,7 +13,7 @@ GameMain::GameMain()
 
 	recovery = new Recovery(); //アイテムクラスデータ確保
 
-	for (int i = 0; i < EnemyMax; i++) 
+	for (int i = 0; i < EnemyMax; i++)
 	{
 		enemy[i] = new Enemy(); //敵クラスデータ確保
 	}
@@ -45,13 +45,16 @@ void GameMain::Update()
 		enemy[i]->Update();
 	}
 
-
-	if (recovery->HitCheck(player)==true)
+	//プレイヤーの弾が当たったら
+	for (int i = 0; i < 100; i++)
 	{
-		recovery->SetReset();
-		player->Setlife(recovery->GetType());
+		if (recovery->HitCheck(player->GetBullet(i)) == true)
+		{
+			player->SetBullet(i); //弾丸消去
+			recovery->SetReset();
+			player->Setlife(recovery->GetType());
+		}
 	}
-
 	//プレイヤーの弾が敵に当たったら
 	for (int i = 0; i < EnemyMax; i++)
 	{
@@ -103,7 +106,7 @@ void GameMain::Update()
 	{
 		for (int j = 0; j < BullersNum; j++)
 		{
-			enemy[i]->GetBullet(j)->SetBullers(player->GetLocation().x, player->GetLocation().y,enemy[i]->GetLocation().x, enemy[i]->GetLocation().y);
+			enemy[i]->GetBullet(j)->SetBullers(player->GetLocation().x, player->GetLocation().y, enemy[i]->GetLocation().x, enemy[i]->GetLocation().y);
 		}
 	}
 
@@ -129,11 +132,11 @@ void GameMain::Draw()const
 	//ステージ描画
 	DrawGraph(0, Mileage % 480 - 480, Stage_Images, FALSE);//画像が続いているように見えるように描画
 	DrawGraph(0, Mileage % 480, Stage_Images, FALSE);//描画
-	DrawFormatString(50, 100, 0xFFFFFF, "HP%d", player->GetLeft());
+	DrawFormatString(50, 10, 0xFFFFFF, "HP%d", player->GetLife());
 	for (int i = 0; i < EnemyMax; i++)
 	{
 		enemy[i]->Draw(); //敵表示
-		for (int  j = 0; j < 100; j++)
+		for (int j = 0; j < 100; j++)
 		{
 			enemy[i]->GetBullet(j)->Draw();
 		}

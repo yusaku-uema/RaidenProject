@@ -43,7 +43,8 @@ public:
 	void Bullet(); //プレイヤーの弾丸処理
 	void ShootBullet(); //発射中の弾丸処理
 	int LifeCheck(); //プレイヤー残機
-	void Setlife(int a);
+	void Setlife(int a); //ライフ変更
+	int GetLife();
 	int GetScore(); //スコア
 	void Operation(); //プレイヤー操作
 	void ImageSwitching(); //画像切り替え

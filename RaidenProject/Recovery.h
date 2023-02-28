@@ -7,12 +7,13 @@ class Recovery : public ItemBase
 private:
 	int images; //画像
 	bool Reset; //リセット
+	int time;  //出現時間
 public:
 	Recovery();
 	void Update();
 	 void Draw()const;
 	 void SetReset();
-	 bool HitCheck(Player* player);
+	 bool HitCheck(PlayerBullers* playerbullers);
 	 
 };
 

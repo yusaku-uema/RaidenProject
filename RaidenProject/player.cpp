@@ -268,7 +268,19 @@ int Player::LifeCheck()
 
 void Player::Setlife(int a)
 {
-	Life += a;
+	if (Life + a > 20)
+	{
+		Life = 20;
+	}
+	else
+	{
+		Life += a;
+	}
+}
+
+int Player::GetLife()
+{
+	return Life;
 }
 
 int Player::GetScore()

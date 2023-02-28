@@ -9,21 +9,20 @@ Recovery::Recovery()
 	Reset = true;
 	images = LoadGraph("images/item/spana.png");
 	type = 0;
-	speed = 5;
+	time = 1;
 }
 
 void Recovery::Update()
 {
-	if (Reset == true)
+	if (time++ % 300 == 0)
 	{
-		location.x = GetRand(570) + 50;
-		location.y = GetRand(-100) - 20;
-		type = GetRand(15) + 4;
-		Reset = false;
-	}
-	else
-	{
-		location.y += speed;
+		if (Reset == true)
+		{
+			location.x = GetRand(570) + 50;
+			location.y = GetRand(390) + 10;
+			type = GetRand(6) + 1;
+			Reset = false;
+		}
 	}
 	if (location.y > 500)
 	{
@@ -33,7 +32,7 @@ void Recovery::Update()
 
 void Recovery::Draw()const
 {
-	DrawRotaGraph(location.x, location.y, 1.5f, 0, images, TRUE); //“G•\Ž¦
+	if(Reset != true)DrawRotaGraph(location.x, location.y, 1.5f, 0, images, TRUE); //“G•\Ž¦
 }
 
 void Recovery::SetReset()
@@ -41,12 +40,12 @@ void Recovery::SetReset()
 	Reset = true;
 }
 
-bool Recovery::HitCheck(Player* player)
+bool Recovery::HitCheck(PlayerBullers* playerbullers)
 {
 
 	bool ret = false; //–ß‚è’l
 
-	if (HitSphere(player) == true)
+	if (HitSphere(playerbullers) == true)
 	{
 		ret = true;
 	}
