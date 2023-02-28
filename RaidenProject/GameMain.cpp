@@ -10,13 +10,14 @@ GameMain::GameMain()
 
 	player = new Player(); //プレイヤークラスのデータ確保
 
-	//for (int i = 0; i < EnemyMax; i++) {
-		//enemy[i] = new Enemy(); //敵クラスデータ確保
-	//}
-	enemy = new Enemy();
+	for (int i = 0; i < EnemyMax; i++) 
+	{
+		enemy[i] = new Enemy(); //敵クラスデータ確保
+	}
 	Stage_Images = LoadGraph("images/Stage/BbackgroundImage.png"); //ステージ画像読込み
 	Mileage = 0; //走行距離
-
+	BullersTime = 1;
+	BullersNum = 0;
 }
 
 //デストラクタ
@@ -28,34 +29,62 @@ GameMain::~GameMain()
 }
 void GameMain::Update()
 {
-	//ここにゲームの処理
 
 	player->Update(); //プレイヤー処理
+
 	//敵処理
-	/*for (int i = 0; i < EnemyMax; i++)
+	for (int i = 0; i < EnemyMax; i++)
 	{
 		enemy[i]->Update();
-	}*/
-	enemy->Update();
+	}
 
 	//プレイヤーの弾が敵に当たったら
-	//for (int i = 0; i < EnemyMax; i++)
-	//{
-	//	for (int j = 0; j < 100; j++)
-	//	{
-	//		if (enemy[i]->HitCheck(player->GetBullet(j)))
-	//		{
-	//			if (player->GetRest(j) == false)
-	//			{
-	//				player->SetBullet(j); //弾丸消去
-	//				enemy[i]->Hit(10); //HPを引く
-	//			}
+	for (int i = 0; i < EnemyMax; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			if (enemy[i]->HitCheck(player->GetBullet(j)))
+			{
+				if (player->GetRest(j) == false)
+				{
+					player->SetBullet(j); //弾丸消去
+					enemy[i]->Hit(10); //HPを引く
+				}
 
-	//		}
+			}
 
-	//	}
-	//}
+		}
+	}
 
+	//弾丸を増やして行く。
+	if (BullersTime++ % 120 == 0)
+	{
+		BullersNum++;
+	}
+	if (BullersNum > 100)
+	{
+		BullersNum = 0;
+	}
+
+
+	//弾丸生成
+	for (int i = 0; i < EnemyMax; i++)
+	{
+		for (int j = 0; j < BullersNum; j++)
+		{
+			enemy[i]->GetBullet(j)->SetBullers(player->GetLocation().x, player->GetLocation().y,enemy[i]->GetLocation().x, enemy[i]->GetLocation().y);
+		}
+	}
+
+	//弾丸の更新
+	for (int i = 0; i < EnemyMax; i++)
+	{
+		for (int j = 0; j < BullersNum; j++)
+		{
+			enemy[i]->GetBullet(j)->Update();
+		}
+
+	}
 	//ステージスクロール処理
 	Mileage += player->GetPlayerSpeed();
 
@@ -71,7 +100,11 @@ void GameMain::Draw()const
 	DrawGraph(0, Mileage % 480, Stage_Images, FALSE);//描画
 	for (int i = 0; i < EnemyMax; i++)
 	{
-		enemy->Draw(); //敵表示
+		enemy[i]->Draw(); //敵表示
+		for (int  j = 0; j < 100; j++)
+		{
+			enemy[i]->GetBullet(j)->Draw();
+		}
 	}
 
 	player->Draw(); //プレイヤー表示

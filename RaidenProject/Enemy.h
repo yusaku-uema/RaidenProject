@@ -2,7 +2,7 @@
 #include"CharaBase.h"
 #include"BulletsBase.h"
 #include"Player.h"
-#define EnemyMax 10 //“G‚Ì”Å‘å
+#define EnemyMax 8 //“G‚Ì”Å‘å
 
 
 class Enemy :public CharaBase
@@ -32,5 +32,6 @@ public:
 	float Enemy_Y();
 	int Getnum();
 	bool HitCheck(PlayerBullers* playerbullers); //UŒ‚‚ğó‚¯‚½‚Ì‚©
+	EnemyBullers* GetBullet(int i)const;
 
 };

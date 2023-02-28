@@ -12,15 +12,11 @@ class GameMain : public AdstractScene
 private:
 	//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
 	Player* player;
-	//Enemy* enemy[EnemyMax];
-	Enemy* enemy;
-
-	PlayerBullers* p_bullers[PLAYER_BULLETS];
-
-
-
+	Enemy* enemy[EnemyMax];
 	int Stage_Images; //ステージ画像
 	int Mileage; //走行距離
+	int BullersNum; //弾丸の数
+	int BullersTime; //時間が経過するごとに弾丸数が増える。
 
 public:
 

@@ -18,6 +18,13 @@ Enemy::Enemy()
 	Interval = 0;
 	Bullers_num = 1;
 
+	for (int i = 0; i < 100; i++)
+	{
+		Enemybullers[i] = new EnemyBullers();
+	}
+
+
+
 }
 
 void Enemy::Update()
@@ -45,7 +52,8 @@ void Enemy::CreateEnemy() //“G‚ð¶¬
 		EnemyTyper = GetRand(4);
 		HP = 20;
 		location.x = GetRand(570) + 50;
-		location.y = GetRand(-210) - 110; //-110‚©‚ç-210‚Ìƒ‰ƒ“ƒ_ƒ€
+		location.y = GetRand(-100) - 50; //-110‚©‚ç-210‚Ìƒ‰ƒ“ƒ_ƒ€
+		Enemylost = false;
 	}
 }
 
@@ -77,6 +85,7 @@ bool Enemy::HitCheck(PlayerBullers* playerbullers)
 	return ret;
 }
 
+
 float Enemy::Enemy_Y()
 {
 	return location.y;
@@ -86,4 +95,11 @@ int Enemy::Getnum()
 {
 	return Bullers_num;
 }
+
+EnemyBullers* Enemy::GetBullet(int i) const
+{
+	return Enemybullers[i];
+}
+
+
 
