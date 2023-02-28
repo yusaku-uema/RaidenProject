@@ -11,6 +11,8 @@ GameMain::GameMain()
 
 	player = new Player(); //プレイヤークラスのデータ確保
 
+	recovery = new Recovery(); //アイテムクラスデータ確保
+
 	for (int i = 0; i < EnemyMax; i++) 
 	{
 		enemy[i] = new Enemy(); //敵クラスデータ確保
@@ -27,6 +29,7 @@ GameMain::~GameMain()
 {
 	delete player;
 	delete enemy;
+	delete recovery;
 
 }
 void GameMain::Update()
@@ -34,10 +37,19 @@ void GameMain::Update()
 
 	player->Update(); //プレイヤー処理
 
+	recovery->Update();
+
 	//敵処理
 	for (int i = 0; i < EnemyMax; i++)
 	{
 		enemy[i]->Update();
+	}
+
+
+	if (recovery->HitCheck(player)==true)
+	{
+		recovery->SetReset();
+		player->Setlife(recovery->GetType());
 	}
 
 	//プレイヤーの弾が敵に当たったら
@@ -117,6 +129,7 @@ void GameMain::Draw()const
 	//ステージ描画
 	DrawGraph(0, Mileage % 480 - 480, Stage_Images, FALSE);//画像が続いているように見えるように描画
 	DrawGraph(0, Mileage % 480, Stage_Images, FALSE);//描画
+	DrawFormatString(50, 100, 0xFFFFFF, "HP%d", player->GetLeft());
 	for (int i = 0; i < EnemyMax; i++)
 	{
 		enemy[i]->Draw(); //敵表示
@@ -127,6 +140,8 @@ void GameMain::Draw()const
 	}
 
 	player->Draw(); //プレイヤー表示
+
+	recovery->Draw();
 }
 
 AdstractScene* GameMain::ChangeScene()

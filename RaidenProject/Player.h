@@ -2,6 +2,7 @@
 #include"CharaBase.h"
 #include"BulletsBase.h"
 #include"PlayerBullers.h"
+#include"Recovery.h"
 
 class Player : public CharaBase 
 {
@@ -42,6 +43,7 @@ public:
 	void Bullet(); //プレイヤーの弾丸処理
 	void ShootBullet(); //発射中の弾丸処理
 	int LifeCheck(); //プレイヤー残機
+	void Setlife(int a);
 	int GetScore(); //スコア
 	void Operation(); //プレイヤー操作
 	void ImageSwitching(); //画像切り替え
@@ -55,5 +57,4 @@ public:
 	bool GetRest(int i);
 	PlayerBullers* GetBullet(int i)const;
 	bool HitCheck(EnemyBullers* Enemybullers); //攻撃を受けたのか
-	
 };

@@ -6,7 +6,7 @@ ItemBase::ItemBase()
 	type = 0;
 }
 
-void ItemBase::GetType()
+int  ItemBase::GetType()
 {
-
+	return type;
 }

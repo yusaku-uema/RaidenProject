@@ -4,6 +4,7 @@
 #include"PlayerBullers.h"
 #include"Enemy.h"
 #include"BulletsBase.h"
+#include"Recovery.h"
 
 #define PLAYER_BULLETS 100 //プレイヤーの弾丸の数
 
@@ -13,6 +14,7 @@ private:
 	//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
 	Player* player;
 	Enemy* enemy[EnemyMax];
+	Recovery* recovery;
 	int Stage_Images; //ステージ画像
 	int Mileage; //走行距離
 	int BullersNum; //弾丸の数

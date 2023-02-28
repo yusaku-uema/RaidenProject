@@ -8,6 +8,7 @@ private:
 
 public:
 	Result(int a); //コンスタラクタ
+	~Result();
 	virtual void Update() override; //描画以外
 	virtual void Draw() const override; //描画のみ
 	virtual AdstractScene* ChangeScene() override; //シーン切り替え

@@ -266,6 +266,11 @@ int Player::LifeCheck()
 	return FALSE;
 }
 
+void Player::Setlife(int a)
+{
+	Life += a;
+}
+
 int Player::GetScore()
 {
 	return 0; //•Û—¯

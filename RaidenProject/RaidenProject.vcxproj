@@ -160,6 +160,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="PlayerBullers.cpp" />
+    <ClCompile Include="Recovery.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="ItemBase.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullers.h" />
+    <ClInclude Include="Recovery.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SphereCollider.h" />

@@ -1,14 +1,16 @@
 #pragma once
-class ItemBase
+#include"SphereCollider.h"
+
+class ItemBase:public SphereCollider
 {
-private:
+protected:
 	int speed; //‘¬“x
 	int type; //Ží—Þ
 public:
 	ItemBase();
 	virtual void Update() = 0;
 	virtual void Draw()const = 0;
-	void GetType();
+	int GetType();
 
 };
 
