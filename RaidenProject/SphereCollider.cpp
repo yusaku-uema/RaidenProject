@@ -6,7 +6,7 @@ SphereCollider:: SphereCollider()
 	radius = 5;
 }
 
-bool SphereCollider::HitSphere(SphereCollider* spherecollider)
+bool SphereCollider::HitSphere(SphereCollider* spherecollider)const
 {
 	bool ret = false;//•Ô‚è’l
 	float distance;	//’†SÀ•W‚Ì‹——£

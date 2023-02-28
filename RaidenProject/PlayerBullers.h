@@ -12,8 +12,6 @@ public:
 	void Update()override;
 	void Draw()const;
 	Location GetBullets();
-	int  GetDamage();
-	float GetBulletsSpeed();
 	void SetBullers(float x, float y);
 	void SetReset(bool a);
 	bool GetReset();

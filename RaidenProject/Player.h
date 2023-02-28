@@ -38,7 +38,7 @@ public:
 	~Player();
 	virtual void Update()override; //描画処理以外
 	virtual void Draw()const override; //描画
-	virtual void  Hit()override;
+	virtual void  Hit(int a)override;
 	void Bullet(); //プレイヤーの弾丸処理
 	void ShootBullet(); //発射中の弾丸処理
 	int LifeCheck(); //プレイヤー残機
@@ -46,7 +46,13 @@ public:
 	void Operation(); //プレイヤー操作
 	void ImageSwitching(); //画像切り替え
 	float GetPlayerSpeed(); //プレイヤーのスピードを返す
+	float GetPlayer_X();
+	float GetPlayer_Y();
+	void SetBullet(int i);
 	bool GetRight(); //右を向いているか
 	bool GetLeft();//左を向いているか
 	bool GetShooting_Flag(); //射撃しているのか
+	bool GetRest(int i);
+	PlayerBullers* GetBullet(int i)const;
+	
 };

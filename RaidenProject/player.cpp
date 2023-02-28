@@ -31,13 +31,13 @@ Player::Player()
 
 	for (int i = 0; i < 100; i++)
 	{
-		Playerbullets[i] = new PlayerBullers();
+		Playerbullers[i] = new PlayerBullers();
 	}
 }
 
 Player::~Player()
 {
-	delete Playerbullets;
+	delete Playerbullers;
 }
 
 
@@ -57,11 +57,7 @@ void Player::Update()
 
 void Player::Draw() const
 {
-
-	if (g_KeyFlg & PAD_INPUT_4) //RBボタンを押し続けているか。
-	{
-		DrawFormatString(320, 240, 0xFFFFFF, "yusaku");
-	}
+		DrawFormatString(320, 240, 0xFFFFFF, "%d", BulletNum);
 
 	if (Left == TRUE) //左に傾いている画像
 	{
@@ -79,9 +75,9 @@ void Player::Draw() const
 
 	for (int i = 0; i < 100; i++)
 	{
-		if (Playerbullets[i]->GetReset()!=true)
+		if (Playerbullers[i]->GetReset()!=true)
 		{
-			Playerbullets[i]->Draw();
+			Playerbullers[i]->Draw();
 		}
 	}
 
@@ -91,7 +87,7 @@ void Player::Bullet()
 {
 	if (Shooting_Time++ % 20 == 0)//弾丸発射間隔
 	{
-		if (BulletNum < 100)
+		if (BulletNum < 99)
 		{
 			BulletNum++;
 		}
@@ -101,9 +97,9 @@ void Player::Bullet()
 		}
 
 
-		if (Playerbullets[BulletNum]->GetReset()==true)
+		if (Playerbullers[BulletNum]->GetReset()==true)
 		{
-			Playerbullets[BulletNum]->SetBullers(location.x, location.y - 18);
+			Playerbullers[BulletNum]->SetBullers(location.x, location.y - 18);
 		}
 
 	}
@@ -114,9 +110,9 @@ void  Player::ShootBullet() //弾の動き
 {
 	for (int i = 0; i < 100; i++)
 	{
-		if (Playerbullets[i]->GetReset() != true)
+		if (Playerbullers[i]->GetReset() != true)
 		{
-			Playerbullets[i]->Update();
+			Playerbullers[i]->Update();
 		}
 	}
 }
@@ -262,7 +258,7 @@ void  Player::ImageSwitching() //プレイヤー画像切り替え
 
 }
 
-void  Player::Hit() //攻撃が当たった時の処理、当たったのかを判断するのは、SphereCollider
+void  Player::Hit(int a) //攻撃が当たった時の処理、当たったのかを判断するのは、SphereCollider
 {
 
 }
@@ -288,6 +284,11 @@ float Player::GetPlayerSpeed()
 	return Player_Speed; //プレイヤーのスピードを返す。
 }
 
+void Player::SetBullet(int i)
+{
+	Playerbullers[i]->SetReset(true);
+}
+
 
 bool Player::GetRight()
 {
@@ -302,4 +303,24 @@ bool Player::GetLeft()
 bool Player::GetShooting_Flag()
 {
 	return Shooting_Flag;
+}
+
+bool Player::GetRest(int i)
+{
+	return Playerbullers[i]->GetReset();
+}
+
+PlayerBullers* Player::GetBullet(int i)const
+{
+	return Playerbullers[i];
+}
+
+float Player::GetPlayer_X()
+{
+	return location.x;
+}
+
+float Player::GetPlayer_Y()
+{
+	return location.y;
 }

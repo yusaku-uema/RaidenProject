@@ -12,7 +12,8 @@ class GameMain : public AdstractScene
 private:
 	//インターネットにあった他のクラスの参照,https://cpp-lang.sevendays-study.com/ex-day2.html
 	Player* player;
-	Enemy* enemy[EnemyMax];
+	//Enemy* enemy[EnemyMax];
+	Enemy* enemy;
 
 	PlayerBullers* p_bullers[PLAYER_BULLETS];
 
